@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+    <table>
+        <tr>
+            <th>Select Item:</th>
+            <th>CheckNumber:</th>
+            <th>City:</th>
+            <th>Zip:</th>
+            <th>Nr:</th>
+        </tr>
+        <tr wicket:id="addresses">
+            <span wicket:id="addressItemPanel"></span>
+        </tr>
+    </table>
+    <form wicket:id="addressForm">
+        <table>
+            <tr>
+                <td>CheckNumber:</td>
+                <td><input type="text" wicket:id="checkNumber"/> (INT)</td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td><input type="text" wicket:id="city"/></td>
+            </tr>
+            <tr>
+                <td>Zip:</td>
+                <td><input type="text" wicket:id="zip"/> (INT)</td>
+            </tr>
+            <tr>
+                <td>Nr:</td>
+                <td><input type="text" wicket:id="nr"/></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

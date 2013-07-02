@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+    <title>Enclosure Example</title>
+</head>
+<body>
+    <div><a wicket:id="displayPayLoadLink">display payload</a></div>
+    <div><a wicket:id="hidePayLoadLink">hide payload</a></div>
+    <hr/>
+    <wicket:enclosure child="dynamicPayLoad1">
+        <div wicket:id="dynamicPayLoad1"></div>
+        <div><span wicket:id="enclosedText"/></div>
+    </wicket:enclosure>
+    <hr/>
+    <div wicket:enclosure="dynamicPayLoad2">
+        <div wicket:id="dynamicPayLoad2"></div>
+        <div wicket:id="enclosedText2"></div>
+    </div>
+</body>
+</html>

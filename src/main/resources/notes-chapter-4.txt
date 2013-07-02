@@ -1,0 +1,194 @@
+######################################
+# 4 Keeping control over HTML - P.35 #
+######################################
+
+---------------------------------------
+- 4.1 Hiding or disabling a component -
+---------------------------------------
+
+- If a component is disabled it will not fire JavaScript-Events.
+- All links inside will be in turn disabled.
+- Methods: isEnabled() , setEnabled(false);
+- use the setter inside "onConfigure"
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    new Link("link"){
+        @Override
+        protected void onConfigure() {
+            super.onConfigure();
+            setEnabled(false);
+        }
+    };
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+-------------------------------
+- 4.2 Modifing tag attributes -
+-------------------------------
+
+- AttributeModifier extends Behaviour
+- can be added to any component with "add(Component)" method.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    label.add(new AttributeModifier("style", "color: black"));
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+-------------------------------------
+- 4.3 Generating tag attribute 'id' -
+-------------------------------------
+
+- Methods: setMarkupId(String id) , getMarkupId()
+- MarkupID != wicketID
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    label.setMarkupId("ID_42_IS_THE_ANSWER");
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+- Result is: <span id="ID_42_IS_THE_ANSWER" wicket:id="eg5Label">label with custim ID</span>
+
+------------------------------------------------------------
+- 4.4 Creating panels “on the fly” with WebMarkupContainer -
+------------------------------------------------------------
+
+- Directly attach a html tag without creation of a new panel!
+- To create a panel which is used only by a specific page and only for a specific task (not reuseable)
+- Does not need a corresponding html file
+- e.g Chapter4Page.eg6Container()
+
+
+-------------------------------------
+- 4.5 Working with markup fragments -
+-------------------------------------
+
+- Fragments are used to switch between content (small markup fragments)
+- use a Fragment if a Panel is to much! SmallPanel1.java + SmallPanel1.html , ...
+- Note: Fragment extends WebMarkupContainer
+
+- Usage:
+- A Fragment is used with a container: "fragmentContainer"
+- The container-tag is closed, right after its definition!
+- Fragment ctor needs a refrence to its container and its own wicketId
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    <tr wicket:id="fragmentContainer"></tr>
+
+                <wicket:fragment wicket:id="enableFragment">
+                    <td>7</td>
+                    <td>Fragment 1</td>
+                    <td><span wicket:id="enabledMessage"></span></td>
+                    <td></td>
+                </wicket:fragment>
+
+                <wicket:fragment wicket:id="disableFragment">
+                    <td>7</td>
+                    <td>Fragment 2</td>
+                    <td><span wicket:id="disabledMessage"></span></td>
+                    <td></td>
+                </wicket:fragment>
+
+
+    Fragment enabledMessageFragment = new Fragment(fragmentContainer, "enableFragment" , this);
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+- Full working AJAX example with switching fragments
+- Further e.g. http://pawelzubkiewicz.blogspot.de/2009/06/wicket-swapping-replacing-fragments.html
+
+--------------------------------------------------------------
+- 4.9 Hiding decorating elements with tag <wicket:enclosure> -
+--------------------------------------------------------------
+
+- used to bind visibility of enclosed markup components based on the visibility of a wicket-Component.
+- to enclose use the tag: <wicket:enclosure>
+- if there are more than one wicket Component inside the enclosure, use the child-attribute on which one the visibility
+  should be based on.
+
+! WARNINGS !
+- has practical problems with webmarkupcontainer
+
+
+----------------------------
+- Element wicket:container -
+----------------------------
+
+Quelle: https://cwiki.apache.org/WICKET/wickets-xhtml-tags.html#Wicket%2527sXHTMLtags-Elementwicket%253Acontainer
+
+
+<wicket:container> -
+Sometimes adding components in certain ways may lead to output of invalid markup. For example,
+lets pretend we output table rows two at a time using a repeater. The markup would look something like this:
+
+<table>
+     <span wicket:id="repeater">
+          <tr><td>...</td></tr>
+          <tr><td>...</td></tr>
+     </span>
+</table>
+
+Notice that we had to attach the repeater to a component tag - in this case a span,
+but a span is not a legal tag to nest under table. So we can rewrite the example as following:
+
+<table>
+     <wicket:container wicket:id="repeater">
+          <tr><td>...</td></tr>
+          <tr><td>...</td></tr>
+     </wicket:container>
+</table>
+
+
+The above is valid markup because wicket namespaced tags are allowed anywhere.
+
+! WARNING !
+
+Note that you cannot use HTML markup IDs on <wicket:container> elements.
+E. g. you cannot replace such an element via AJAX. Also, <wicket:container> elements are completely removed
+from produced markup when Wicket is run in production mode.
+
+
+
+################################
+# 16 Working with AJAX - P.155 #
+################################
+
+- Wicket AJAX components provides callback methods.
+  Those are executed if they receive a AJAX-REQUEST e.g:
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+   final Label label = new Label("labelComponent", "Initial value.");
+
+   //
+   label.setOutputMarkupId(true);
+   add(label);
+
+   //...
+
+   new AjaxLink("ajaxLink"){
+     @Override
+     public void onClick(AjaxRequestTarget target) {
+
+             //some server side code...
+
+             //always check: noJsCase
+             if(target != null){
+
+                //response content
+                target.add(label)
+             }
+         }
+     };
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+- An argument of such callback method is AjaxRequestTarget, it specifies the response that is send back to the client.
+  AjaxRequestTarget provides the add(Component) method, which add's components to the response
+  that has to be updated/rerendered!
+
+- It is necessary for wicket to reference those components in the markup. In this case "label".
+  To display the wicket id use "setOutputMarkupId(true)".
+
+- In case of an initialized invisible component, use "setOutputMarkupPlaceholderTag(true)"
+  to render a visible placeholder tag. This method will also call "setOutputMarkupId(true)"
+
+
+

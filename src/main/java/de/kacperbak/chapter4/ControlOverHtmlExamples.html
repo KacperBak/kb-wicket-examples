@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+    <style type="text/css">
+        td {padding:5px; color: gray;}
+    </style>
+    <title>Chapter4Page</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Example Nr.</th>
+                <th>Description</th>
+                <th>Action</th>
+                <th>Visualization</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>Simple Link</td>
+            <td><a wicket:id="counterLink">increase</a></td>
+            <td>counter: <span wicket:id="counter"/></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>AJAX Links</td>
+            <td><a wicket:id="disableLink">disable</a></td>
+            <td><a wicket:id="enableLink">enable</a></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>AttributeModifier: overwrite attribute color:red</td>
+            <td><span wicket:id="eg3Label" style="color: red"></span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>AttributeAppender: append attribute to existing one, else creates one</td>
+            <td><span wicket:id="eg4Label" style="color: red;"></span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>setMarkupId(id) - Warning: markupID != wicketID</td>
+            <td><span wicket:id="eg5Label"></span></td>
+            <td></td>
+        </tr>
+
+        <tr wicket:id="eg6Container">
+            <td>6</td>
+            <td>WebmarkupContainer</td>
+            <td><span wicket:id="containerMessage"></span></td>
+            <td></td>
+        </tr>
+
+        <!-- markup fuckup: close </tr> right after declaration container !!! -->
+        <tr wicket:id="fragmentContainer"></tr>
+
+            <wicket:fragment wicket:id="enableFragment">
+                <td>7</td>
+                <td>Fragment 1</td>
+                <td><span wicket:id="enabledMessage"></span></td>
+                <td></td>
+            </wicket:fragment>
+
+            <wicket:fragment wicket:id="disableFragment">
+                <td>7</td>
+                <td>Fragment 2</td>
+                <td><span wicket:id="disabledMessage"></span></td>
+                <td></td>
+            </wicket:fragment>
+
+        </tbody>
+    </table>
+</body>
+</html>

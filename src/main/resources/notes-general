@@ -1,0 +1,15 @@
+##############################
+# FREE WICKET GUIDE EXAMPLES #
+##############################
+
+# build the project with the command #
+mvnkb clean compile
+
+# run a specific project with an directory #
+
+cd UsernameCustomValidator/
+mvnkb jetty:run
+
+
+
+

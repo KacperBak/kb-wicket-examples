@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<h3>Current addresses</h3>
+<table>
+    <tr>
+        <th>CheckNumber:</th>
+        <th>City:</th>
+        <th>Zip:</th>
+        <th>Nr:</th>
+    </tr>
+    <tr wicket:id="addresses">
+        <td wicket:id="checkNumber"></td>
+        <td wicket:id="city"></td>
+        <td wicket:id="zip"></td>
+        <td wicket:id="nr"></td>
+    </tr>
+</table>
+<h3>Create new address</h3>
+<form wicket:id="form">
+    <table>
+        <tr>
+            <td>CheckNumber:</td>
+            <td><input type="text" wicket:id="checkNumberTextField"/></td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td><input type="text" wicket:id="cityTextField"/></td>
+            <td><span wicket:id="cityFieldFeedback"></span></td>
+        </tr>
+        <tr>
+            <td>Zip:</td>
+            <td><input type="text" wicket:id="zipTextField"/></td>
+            <!--<td><span wicket:id=""></span></td>-->
+        </tr>
+        <tr>
+            <td>Nr:</td>
+            <td><input type="text" wicket:id="nrTextField"/></td>
+        </tr>
+    </table>
+    <input type="submit" value="create"/>
+</form>
+<h3>Messages - displays all messages from the form</h3>
+<div wicket:id="feedbackMessage"></div>
+</body>
+</html>

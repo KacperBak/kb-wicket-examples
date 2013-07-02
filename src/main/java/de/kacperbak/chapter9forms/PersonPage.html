@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+    <title>PersonForm</title>
+</head>
+<body>
+      <form wicket:id="personForm" method="get">
+          <fieldset>
+              <legend style="color: #F90">Create a person</legend>
+              <table>
+                  <tr>
+                      <td>Name:</td>
+                      <td><input wicket:id="name" type="text"/></td>
+                  </tr>
+                  <tr>
+                      <td>Age:</td>
+                      <td><input wicket:id="age" type="text"/></td>
+                  </tr>
+                  <tr>
+                      <td>CheckNumber:</td>
+                      <td><input wicket:id="checkNumber" type="text"/></td>
+                  </tr>
+                  <tr>
+                      <td>Address:</td>
+                      <td><select wicket:id="addresses"></select></td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <td><input type="submit" value="create Person"/></td>
+                  </tr>
+              </table>
+
+
+
+              <legend style="color: #F90">Form status</legend>
+              <table>
+                  <tr>
+                      <td>Message:</td>
+                      <td><span wicket:id="status"></span></td>
+                  </tr>
+              </table>
+
+          </fieldset>
+      </form>
+
+      <form wicket:id="addressForm" method="get">
+          <fieldset>
+              <legend style="color: #F90">Detailed address data</legend>
+              <table>
+                  <tr>
+                      <td>City:</td>
+                      <td><input wicket:id="city" type="text"/></td>
+                  </tr>
+                  <tr>
+                      <td>Zip:</td>
+                      <td><input wicket:id="zip" type="text"/></td>
+                  </tr>
+                  <tr>
+                      <td>Nr:</td>
+                      <td><input wicket:id="nr" type="text"/></td>
+                  </tr>
+                  <tr>
+                      <td>CheckNumber:</td>
+                      <td><input wicket:id="checkNumber" type="text"/></td>
+                  </tr>
+              </table>
+          </fieldset>
+      </form>
+</body>
+</html>

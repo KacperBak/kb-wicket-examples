@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+    <title>Fragment example</title>
+</head>
+<body>
+    <div><a wicket:id="enableLink">enable</a></div>
+    <div><a wicket:id="disableLink">disable</a></div>
+    <hr/>
+
+    <!-- markup fuckup: close </tr> right after declaration container !!! -->
+    <div wicket:id="fragmentContainer"></div>
+
+    <wicket:fragment wicket:id="enableFragment">
+        <span>Fragment 1: </span>
+        <span wicket:id="enabledMessage"></span>
+    </wicket:fragment>
+
+    <wicket:fragment wicket:id="disableFragment">
+        <span>Fragment 2</span>
+        <span wicket:id="disabledMessage"></span>
+    </wicket:fragment>
+
+</body>
+</html>

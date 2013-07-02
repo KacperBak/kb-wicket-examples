@@ -1,0 +1,41 @@
+#############################
+# 10 Wicket forms in detail #
+#############################
+
+- 10.1 Default form processing -
+
+Submit trigger following process:
+
+1.  Form validation
+
+1.1 InputValues are converted into JavaObjects
+1.2 Validation of UserInput
+1.3 Visualization of feedback messages
+
+2.  Updating models
+
+2.1 If validation FAILS     -> this step is skipped.
+2.2 If validation SUCCEEDS  -> all children will be updated with converted values.
+
+3.  Invoking callback methods
+
+3.1 If validation FAILS     -> onError()
+3.2 If validation SUCCEEDS  -> onSubmit()
+
+
+- Custom validation messages -
+In case of validation errors,
+the component that has caused the error will be considered as the component which
+the string resource is relative to.
+
+ergo: It is possible to create its own Validator bundles:
+
+de.kacperbak.validators
+    MyValidator.java
+    MyValidator.properties
+
+
+use method "setType(class)" to set convertType from INPUT to MODEL.
+
+FormComponent<Integer> checkNumberTextField =
+new TextField("checkNumberTextField", new Model<Integer>()).setType(Integer.class);

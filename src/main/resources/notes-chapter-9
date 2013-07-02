@@ -1,0 +1,67 @@
+#############################
+# 9 Wicket models and forms #
+#############################
+
+Model.class is for STATIC data
+PropertyModel.class and CompoundPropertyModel.class are for DYNAMIC data!
+
+A model allows components to access and modify their data.
+Component [0..1] ------ [0..*] IModel
+A Component can be bind to more than one model.
+
+------------------------
+- 9.1 What is a model? -
+------------------------
+
+Model.of("Hello World");  <--> new Model<String>("Hello World");
+Model.ofList(), Model.ofSet(), Model.ofMap()
+
+-----------------------
+- 9.2.1 PropertyModel -
+-----------------------
+
+PropertyModel is null-safe, which means we don't have to worry!
+if property expression includes a null value in its path.
+If such a value is encountered, an empty string will be returned.
+
+Indexes and map keyes can be also specified using squared brackets like
+“children[0].name” or “mapField[key].subfield”.
+
+-------------------------------
+- 9.2.2 CompoundPropertyModel -
+-------------------------------
+
+Assign a model to a container of a component.
+Now is the id of the component used like a property expression (like PropertyModel).
+
+-------------------------
+- 9.6 Detachable models -
+-------------------------
+Problem:
+- Wicket stores Page instances by serialization.
+- A model object can be very large
+- All references inside a model are recursively serialized too!
+- This can be very expensive in time and memory.
+- Further sometimes objects can NOT be serialized!
+
+See Chapter 7
+- Wicket creates stateful pages inside the Session to keep track of user interaction.
+- Wicket automatically assigns a session to user the first time a stateful page is requested.
+- Wicket Application.class creates a new RequestCycle on every request.
+
+Solution:
+- Every Model is detachable, because: IModel extends IDetachable
+- override detach() method of a model to do so.
+- detach() is always called at the end of request processing!
+- it's usual to write a custom detachable model suited for the used persistence technology
+
+Usage: LoadableDetachableModel<T>
+- T is the Entitiy to load from a custom DB.
+- LoadableDetachableModel is not responsible for saving any changes occurred to the entity!
+- To save entity changes persist the entity before the detaching.
+
+-------------------------------------------
+- 9.7 Component uses more thane ONE model -
+-------------------------------------------
+- onDetach() method should be overridden manually
+
