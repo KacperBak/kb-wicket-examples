@@ -1,6 +1,7 @@
 package de.kacperbak.chapter10NestedForm;
 
 import de.kacperbak.beans.Address;
+import de.kacperbak.beans.Person;
 import de.kacperbak.pages.BasePage;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.Form;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public class NestedFormPage extends BasePage {
 
-    private NestedAddressFormPanel addressFormPanel;
+    private NestedPersonFormPanel personFormPanel;
 
     public NestedFormPage() {
         add(nestedForm());
@@ -26,14 +27,18 @@ public class NestedFormPage extends BasePage {
             @Override
             protected void onSubmit() {
                 super.onSubmit();
-                service.addAddress(addressFormPanel.getModelObject());
-                printAddresses(service.getAddresses());
+                service.addPerson(personFormPanel.getModelObject());
+                printPersons(service.getPersons());
             }
         };
-//        Address address = new Address("MM", "999", 88888, 609);
-        Address address = null;
-        form.add(addressFormPanel = new NestedAddressFormPanel("addressFormPanel", new Model<Address>(address)));
+        form.add(personFormPanel = new NestedPersonFormPanel("personFormPanel", new Model<Person>(null)));
         return form;
+    }
+
+    private void printPersons(List<Person> personList){
+        for(Person person : personList){
+            System.out.println(person);
+        }
     }
 
     private void printAddresses(List<Address> addressList){

@@ -66,6 +66,10 @@ public class PersonService implements Serializable {
         return new Person("Kacper", 30, createDefaultAddress(), 0);
     }
 
+    public void addPerson(Person person){
+        persons.add(person);
+    }
+
     public void addPerson(String name, int age, Address address, int checkNumber){
         persons.add(new Person(name, age, address, checkNumber));
     }

@@ -1,0 +1,2370 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes -->
+<html class="splitter-invoked"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Listview with checkboxes - Apache Wicket - Apache Software Foundation</title>
+
+        
+
+                        
+    
+
+            <meta http-equiv="X-UA-Compatible" content="IE=8">
+<meta charset="UTF-8">
+
+<!-- Deprecated since 3.4. To be removed in a future version of Confluence; use AJS.Confluence.getContextPath() -->
+<meta id="confluence-context-path" name="confluence-context-path" content="/confluence">
+<meta name="ajs-context-path" content="/confluence">
+<meta name="ajs-version-number" content="3.5.17">
+<meta name="ajs-build-number" content="2176">
+<meta id="atlassian-token" name="atlassian-token" content="06c764425bb88ae590605076b7a03d0678330489">
+<meta id="confluence-space-key" name="confluence-space-key" content="WICKET">
+<meta name="ajs-remote-user" content="">
+<meta name="ajs-static-resource-url-prefix" content="/confluence/s/en/2176/1/_">
+
+<script type="text/javascript">
+    // Deprecated global variables. To be removed in a future version of Confluence.
+    var contextPath = '/confluence';
+</script>
+
+    
+
+<!-- include system css resources -->
+<link type="text/css" rel="stylesheet" href="./Listview with checkboxes_files/batch.css" media="all">
+<!--[if IE]>
+<link type="text/css" rel="stylesheet" href="/confluence/s/de/2176/1/4/_/download/superbatch/css/batch.css?ieonly=true" media="all">
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="./Listview with checkboxes_files/batch(1).css" media="print">
+<link type="text/css" rel="stylesheet" href="./Listview with checkboxes_files/com.atlassian.confluence.ext.newcode-macro-plugin-syntaxhighlighter.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Listview with checkboxes_files/com.atlassian.confluence.ext.newcode-macro-plugin-sh-theme-default.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Listview with checkboxes_files/com.atlassian.confluence.plugins.pagetree-pagetree-resources.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Listview with checkboxes_files/confluence-forms.css" media="all">
+<!--[if IE]>
+<link type="text/css" rel="stylesheet" href="/confluence/s/de/2176/1/1.0/_/download/batch/confluence.web.resources:aui-forms/confluence.web.resources:aui-forms.css?ieonly=true" media="all">
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="./Listview with checkboxes_files/com.atlassian.confluence.plugins.share-page-mail-page-resources.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Listview with checkboxes_files/confluence.web.resources-view-comment.css" media="all">
+<!--[if IE]>
+<link type="text/css" rel="stylesheet" href="/confluence/s/de/2176/1/1.0/_/download/batch/confluence.web.resources:view-comment/confluence.web.resources:view-comment.css?ieonly=true" media="all">
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="./Listview with checkboxes_files/confluence.macros.advanced-fancy-box.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Listview with checkboxes_files/com.atlassian.confluence.plugins.drag-and-drop-support.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Listview with checkboxes_files/com.gliffy.integration.confluence-gliffy-global-resources.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Listview with checkboxes_files/com.atlassian.plugins.shortcuts.atlassian-shortcuts-module-shortcuts.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Listview with checkboxes_files/com.atlassian.confluence.keyboardshortcuts-confluence-keyboard-shortcuts.css" media="all">
+
+<!-- end system css resources -->
+
+    <link rel="stylesheet" href="./Listview with checkboxes_files/combined.css" type="text/css">
+
+    <meta name="confluence-request-time" content="1373231970382">
+
+<meta name="loggedInUsername" content="">
+            <meta name="ajs-keyboardshortcut-hash" content="727337b1c1442448935dab4d7b119ef9">
+    <!-- Deprecated since 3.4. To be removed in a future version of Confluence; use atl.header -->
+            <script type="text/x-template" title="gliffy-footer-webpanel">
+    <div class="gliffy-footer-webpanel"><span>Auf dieser Confluence-Installation wird läuft eine kostenlose Gliffy-Lizenz - Bewerten Sie das <a href="http://www.gliffy.com/products/confluence-plugin/">Gliffy Confluence-Plug-In </a>für Ihr Wiki!</span></div>
+</script>
+
+<meta name="gliffy-license-type" content="OPEN_SOURCE">
+<meta name="gliffy-license-quantity" content="-1">
+
+
+
+            <script type="text/x-template" title="share-content-popup">
+    <form action="#" method="post" class="aui share-content-popup">
+        <fieldset>
+            <label for="users">Benutzername oder E-Mail-Adresse</label>
+            <div class="autocomplete-user-target">
+                <input class="text autocomplete-sharepage" id="users" data-max="10" data-dropdown-target=".autocomplete-user-target" data-none-message="Kein Benutzer gefunden"/>
+            </div>
+            <ol class="recipients">
+            </ol>
+            <div><label for="note">Nachricht</label></div>
+            <textarea class="textarea" id="note" placeholder="Optionale Nachricht"/>
+        </fieldset>
+        <div class="button-panel">
+            <div class="progress-messages-icon"></div>
+            <div class="progress-messages">
+            </div>
+            <input class="button submit" type="submit" value="Teilen" disabled/>
+            <a class="close-dialog" href="#">Abbrechen</a>
+        </div>
+    </form>
+</script>
+
+<script type="text/x-template" title="share-content-popup-recipient-username">
+    <li data-username="{username}" style="display: none">
+        <span>
+            <img src="{thumbnailLink.href}" title="{title}">
+            <span>{title}</span>
+            <span class="remove-recipient"/>
+        </span>
+    </li>
+</script>
+
+<script type="text/x-template" title="share-content-popup-recipient-email">
+    <li data-email="{email}" style="display: none">
+        <span>
+            <img src="{icon}" title="{email}">
+            <span>{email}</span>
+            <span class="remove-recipient"/>
+        </span>
+    </li>
+</script>
+            <meta name="ajs-use-keyboard-shortcuts" content="true">
+    
+    <link rel="shortcut icon" href="https://cwiki.apache.org/confluence/favicon.ico">
+    <link rel="icon" type="image/png" href="https://cwiki.apache.org/confluence/s/en/2176/1/_/images/logo/confluence_16.png">
+
+<link rel="search" type="application/opensearchdescription+xml" href="https://cwiki.apache.org/confluence/opensearch/osd.action" title="Apache Software Foundation">
+
+        <!-- include system javascript resources -->
+                        
+    
+    <script type="text/javascript" src="./Listview with checkboxes_files/batch.js"></script>
+<script type="text/javascript" src="./Listview with checkboxes_files/com.atlassian.confluence.ext.newcode-macro-plugin-syntaxhighlighter.js"></script>
+<script type="text/javascript" src="./Listview with checkboxes_files/com.atlassian.confluence.ext.newcode-macro-plugin-syntaxhighlighter-brushes.js"></script>
+<script type="text/javascript" src="./Listview with checkboxes_files/com.atlassian.confluence.ext.newcode-macro-plugin-syntaxhighlighter-lang-de.js"></script>
+<script type="text/javascript" src="./Listview with checkboxes_files/com.atlassian.confluence.plugins.pagetree-pagetree-resources.js"></script>
+<script type="text/javascript" src="./Listview with checkboxes_files/com.atlassian.confluence.plugins.share-page-mail-page-resources.js"></script>
+<script type="text/javascript" src="./Listview with checkboxes_files/confluence.macros.advanced-fancy-box.js"></script>
+<script type="text/javascript" src="./Listview with checkboxes_files/confluence.macros.advanced-thumbnail-images.js"></script>
+<script type="text/javascript" src="./Listview with checkboxes_files/com.atlassian.confluence.plugins.drag-and-drop-support.js"></script>
+<script type="text/javascript" src="./Listview with checkboxes_files/com.atlassian.confluence.plugins.drag-and-drop-drag-and-drop-for-view-content.js"></script>
+<script type="text/javascript" src="./Listview with checkboxes_files/com.gliffy.integration.confluence-gliffy-global-resources.js"></script>
+<script type="text/javascript" src="./Listview with checkboxes_files/com.atlassian.confluence.plugins.doctheme-splitter.js"></script>
+<script type="text/javascript" src="./Listview with checkboxes_files/com.atlassian.plugins.shortcuts.atlassian-shortcuts-module-shortcuts.js"></script>
+<script type="text/javascript" src="./Listview with checkboxes_files/com.atlassian.confluence.keyboardshortcuts-confluence-keyboard-shortcuts.js"></script>
+<script type="text/javascript" src="./Listview with checkboxes_files/legacy.confluence.web.resources-prototype.js"></script>
+
+    
+    <!-- end system javascript resources -->
+
+    
+
+    
+    <link rel="canonical" href="./Listview with checkboxes_files/Listview with checkboxes.html">
+    <link rel="shortlink" href="https://cwiki.apache.org/confluence/x/-Ws">
+    <meta name="wikilink" content="[WICKET:Listview with checkboxes]">
+    <meta name="page-version" content="6">
+
+</head>
+
+<body onload="placeFocus()" id="com-atlassian-confluence" class="theme-documentation  splitter-invoked">
+<div id="full-height-container">
+    <div id="header-precursor">
+        <style type="text/css">
+#preview #previewArea iframe {
+
+   overflow: visible;
+}
+</style>
+<center><h2 style="font-weight:bold">Upgraded to 3.5.17. Upgrade to 5.1 delayed.</h2></center>
+        
+<fieldset class="hidden parameters">
+    <input type="hidden" id="shortcutDialogTip" value="Kürzel-Tipp: Das Dialogfeld kann auch durch Drücken auf &lt;b&gt;{shortcut}&lt;/b&gt; geöffnet werden">
+        <input type="hidden" title="i18n.close.name" value="Schließen">
+        <input type="hidden" title="i18n.cancel.name" value="Abbrechen">
+</fieldset><fieldset class="hidden parameters">
+    <input type="hidden" id="statusDialogHeading" value="Woran arbeiten Sie?">
+    <input type="hidden" id="statusDialogAccessibilityLabel" value="Geben Sie Ihren Status ein (max. 140 Zeichen)">
+    <input type="hidden" id="statusDialogLatestLabel" value="Letzte Aktualisierung:">
+    <input type="hidden" id="statusDialogUpdateButtonLabel" value="Aktualisieren">
+    <input type="hidden" id="statusDialogCancelButtonLabel" value="Abbrechen">
+</fieldset>
+
+<fieldset class="hidden parameters">
+    <input type="hidden" id="globalSettingsAttachmentMaxSize" value="20971520">
+    <input type="hidden" id="userLocale" value="de_DE">
+    <input type="hidden" id="staticResourceUrlPrefix" value="/confluence/s/en/2176/1/_">
+    <input type="hidden" id="contextPath" value="/confluence">
+</fieldset>
+                </div>
+
+<div id="header" class="sectionbottom ">
+        <form id="quick-search" class="quick-search" method="get" action="https://cwiki.apache.org/confluence/dosearchsite.action">
+                <fieldset>
+            <input type="hidden" name="spaceSearch" value="false">
+        </fieldset>
+        <fieldset>
+            <legend>Schnellsuche</legend>
+            <input class="quick-search-query" id="quick-search-query" type="search" accesskey="n" autocomplete="off" name="queryString" size="25" results="10" placeholder="Confluence durchsuchen" title=" ( Typ &#39;/&#39; )">
+            <input class="quick-search-submit" id="quick-search-submit" type="submit" value="Confluence durchsuchen">
+            <div class="aui-dd-parent quick-nav-drop-down"><!-- Quick nav appears here --></div>
+        </fieldset>
+        <fieldset class="hidden parameters">
+            <input type="hidden" id="quickNavEnabled" value="true">
+                    </fieldset>
+    </form>
+
+    <ul id="header-menu-bar" class="ajs-menu-bar">
+                    
+        
+            <li class="normal ajs-menu-item">
+        <a id="browse-menu-link" class="browse trigger ajs-menu-title" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#"><span><span>Durchsuchen</span></span></a>         <div class="ajs-drop-down assistive" hidden="">
+                        <ul id="browse-menu-link-leading" class="section-leading first">
+                                        <li>
+    
+        
+    
+    <a id="space-pages-link" href="https://cwiki.apache.org/confluence/pages/listpages.action?key=WICKET" class="" title="Seiten im Bereich durchsuchen ( Typ &#39;g&#39; dann &#39;s&#39; )">
+                   <span>Seiten</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="space-blogposts-link" href="https://cwiki.apache.org/confluence/pages/viewrecentblogposts.action?key=WICKET" class="" title="Blogs im Bereich Apache Wicket durchsuchen">
+                   <span>Blog</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="space-labels-link" href="https://cwiki.apache.org/confluence/labels/listlabels-heatmap.action?key=WICKET" class="" title="Stichwörter im Bereich Apache Wicket durchsuchen">
+                   <span>Stichwörter</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="space-attachments-link" href="https://cwiki.apache.org/confluence/spaces/listattachmentsforspace.action?key=WICKET" class="" title="Anhänge im Bereich Apache Wicket durchsuchen">
+                   <span>Anhänge</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a href="https://cwiki.apache.org/confluence/spaces/space-bookmarks.action?spaceKey=WICKET" class="" title="Lesezeichen im Apache Wicket Bereich durchsuchen">
+                   <span>Lesezeichen</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="space-mail-link" href="https://cwiki.apache.org/confluence/spaces/viewmailarchive.action?key=WICKET" class="" title="E-Mails im Bereich Apache Wicket durchsuchen">
+                   <span>E-Mail</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="space-advanced-link" href="https://cwiki.apache.org/confluence/spaces/viewspacesummary.action?key=WICKET" class="" title="Zusätzliche Bereichsfunktionen im Bereich Apache Wicket durchsuchen">
+                   <span>Erweitert</span></a>        </li>
+                            </ul>
+                        <ul id="browse-menu-link-global" class="section-global">
+                                        <li>
+    
+        
+    
+    <a id="whats-new-menu-link" href="http://docs.atlassian.com/confluence/docs-35/whatsnew/iframe" class="" title="">
+                   <span>Neues</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="space-directory-link" href="https://cwiki.apache.org/confluence/spacedirectory/view.action" class="" title="Das Bereichsverzeichnis von Confluence durchsuchen">
+                   <span>Bereichsverzeichnis</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="keyboard-shortcuts-link" href="https://cwiki.apache.org/confluence" class="" title="Verfügbare Tastenkombinationen anzeigen ( Typ &#39;?&#39; )">
+                   <span>Tastenkombinationen</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="gadget-directory-link" href="https://cwiki.apache.org/confluence" class="user-item administration-link" title="Von Confluence bereitgestellte Gadgets durchsuchen">
+                   <span>Confluence Gadgets</span></a>        </li>
+                            </ul>
+                    </div>
+    </li>
+        
+                                                         <li class="ajs-menu-item normal">
+        
+        
+    
+    <a id="login-link" href="https://cwiki.apache.org/confluence/login.action?os_destination=%2Fdisplay%2FWICKET%2FListview%2Bwith%2Bcheckboxes" class="user-item login-link" title="">
+                   <span>Anmelden</span></a>        </li>
+                            <li class="ajs-menu-item normal">
+    
+        
+    
+    <a id="signup-link" href="https://cwiki.apache.org/confluence/signup.action" class="user-item signup-link" title="">
+                   <span>Registrieren</span></a>        </li>
+                                <li class="normal ajs-menu-item">
+            <div id="splitter-button" class="" title="Randleiste ein- oder ausblenden ( Typ &#39;[&#39; )"></div>
+        </li>
+
+    </ul>
+    
+    
+    <ol id="breadcrumbs">
+                    
+                        
+        <li class="first">
+                                            <span><a href="https://cwiki.apache.org/confluence/dashboard.action" title="Zur Übersicht ( Typ &#39;g&#39; dann &#39;d&#39; )">Übersicht</a></span>
+                </li>
+                    
+                
+        <li>
+                                            <span><a href="https://cwiki.apache.org/confluence/display/WICKET">Apache Wicket</a></span>
+                </li>
+                                        <li id="ellipsis" title="Alle Breadcrumbs anzeigen"><span><strong>…</strong></span></li>
+                                    
+                
+        <li class="hidden-crumb">
+                                            <span><a href="https://cwiki.apache.org/confluence/display/WICKET/Index">Index</a></span>
+                </li>
+                                
+                
+        <li class="hidden-crumb">
+                                            <span><a href="https://cwiki.apache.org/confluence/display/WICKET/Framework+Documentation">Framework Documentation</a></span>
+                </li>
+                                
+                
+        <li class="hidden-crumb">
+                                            <span><a href="https://cwiki.apache.org/confluence/display/WICKET/Reference+library">Reference library</a></span>
+                </li>
+                                
+                
+        <li class="hidden-crumb">
+                                            <span><a href="https://cwiki.apache.org/confluence/display/WICKET/How+to+do+things+in+Wicket">How to do things in Wicket</a></span>
+                </li>
+                    
+                
+        <li>
+                                            <span><a href="https://cwiki.apache.org/confluence/display/WICKET/Forms">Forms</a></span>
+                </li>
+                    
+                
+        <li>
+                                            <span>Listview with checkboxes</span>
+                </li>
+        </ol>
+
+</div>
+
+    <div id="splitter" style="position: relative; height: 359.7999954223633px;">
+    <div id="splitter-sidebar" style="position: absolute; z-index: 0; left: 0px; width: 300px; height: 360px;">
+        
+
+                    
+        
+    
+
+<div class="plugin_pagetree">
+
+                <div id="pagetreesearch">
+            <form method="POST" action="https://cwiki.apache.org/confluence/plugins/pagetreesearch/pagetreesearch.action" name="pagetreesearchform">
+                                    <input type="hidden" name="ancestorId" value="27829">
+                                <input type="hidden" name="spaceKey" value="WICKET">
+                <input type="text" size="20" name="queryString">
+                <input type="submit" value="Suche">
+            </form>
+        </div>
+    
+        
+    <ul class="plugin_pagetree_children_list plugin_pagetree_children_list_noleftspace">
+        <div class="plugin_pagetree_children" id="children27829-0">
+<ul class="plugin_pagetree_children_list" id="child_ul27829-0">
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan30738488-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Branches+and+Merging">Branches and Merging</a>
+        </span>            </div>
+
+        <div id="children30738488-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul30738488-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan2327961-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Clean+code%2C+better+testability+and+less+mixing+of+concern">Clean code, better testability and less mixing of concern</a>
+        </span>            </div>
+
+        <div id="children2327961-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul2327961-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus66148-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan66148-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Community+meetups">Community meetups</a>
+        </span>            </div>
+
+        <div id="children66148-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus28254-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan28254-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Companies+that+provide+services">Companies that provide services</a>
+        </span>            </div>
+
+        <div id="children28254-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus119265-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan119265-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Contributing+to+Wicket">Contributing to Wicket</a>
+        </span>            </div>
+
+        <div id="children119265-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27785-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27785-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Framework+Comparisons">Framework Comparisons</a>
+        </span>            </div>
+
+        <div id="children27785-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27849-0" class="plugin_pagetree_childtoggle icon icon-minus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27849-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Framework+Documentation">Framework Documentation</a>
+        </span>            </div>
+
+        <div id="children27849-0" class="plugin_pagetree_children_container">
+                                                        <ul class="plugin_pagetree_children_list" id="child_ul27849-0">
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27832-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27832-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Best+Practices+and+Gotchas">Best Practices and Gotchas</a>
+        </span>            </div>
+
+        <div id="children27832-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27801-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Dealing+with+conditional+content">Dealing with conditional content</a>
+        </span>            </div>
+
+        <div id="children27801-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27801-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27838-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Documentation+Index">Documentation Index</a>
+        </span>            </div>
+
+        <div id="children27838-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27838-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27763-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27763-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/FAQs">FAQs</a>
+        </span>            </div>
+
+        <div id="children27763-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27823-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/How+To+Accomplish+Common+Tasks">How To Accomplish Common Tasks</a>
+        </span>            </div>
+
+        <div id="children27823-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27823-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27740-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27740-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Integration+guides">Integration guides</a>
+        </span>            </div>
+
+        <div id="children27740-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27825-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27825-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/New+User+Guide">New User Guide</a>
+        </span>            </div>
+
+        <div id="children27825-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27841-0" class="plugin_pagetree_childtoggle icon icon-minus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27841-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Reference+library">Reference library</a>
+        </span>            </div>
+
+        <div id="children27841-0" class="plugin_pagetree_children_container">
+                                                        <ul class="plugin_pagetree_children_list" id="child_ul27841-0">
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan47316-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Adding+Javascript+or+CSS+using+a+Resource">Adding Javascript or CSS using a Resource</a>
+        </span>            </div>
+
+        <div id="children47316-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul47316-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27660-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Bookmarkable+pages+and+links">Bookmarkable pages and links</a>
+        </span>            </div>
+
+        <div id="children27660-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27660-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27670-0">                        <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27670">Browser back &amp; forward</a>
+        </span>            </div>
+
+        <div id="children27670-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27670-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27834-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27834-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Component">Component</a>
+        </span>            </div>
+
+        <div id="children27834-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan47324-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Creating+a+behavior+to+use+a+Javascript+library">Creating a behavior to use a Javascript library</a>
+        </span>            </div>
+
+        <div id="children47324-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul47324-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27731-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Custom+State+Tracking">Custom State Tracking</a>
+        </span>            </div>
+
+        <div id="children27731-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27731-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan102437-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Dynamically+Generate+a+CSS+Stylesheet">Dynamically Generate a CSS Stylesheet</a>
+        </span>            </div>
+
+        <div id="children102437-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul102437-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27835-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27835-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Form+validation+messages">Form validation messages</a>
+        </span>            </div>
+
+        <div id="children27835-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27735-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Fragment">Fragment</a>
+        </span>            </div>
+
+        <div id="children27735-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27735-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27650-0" class="plugin_pagetree_childtoggle icon icon-minus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27650-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/How+to+do+things+in+Wicket">How to do things in Wicket</a>
+        </span>            </div>
+
+        <div id="children27650-0" class="plugin_pagetree_children_container">
+                                                        <ul class="plugin_pagetree_children_list" id="child_ul27650-0">
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27825718-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Adding+a+sign-in+page+served+over+HTTP+but+authenticating+using+HTTPS">Adding a sign-in page served over HTTP but authenticating using HTTPS</a>
+        </span>            </div>
+
+        <div id="children27825718-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27825718-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus74389-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan74389-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/AJAX">AJAX</a>
+        </span>            </div>
+
+        <div id="children74389-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27738-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27738-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Application+Server+Notes">Application Server Notes</a>
+        </span>            </div>
+
+        <div id="children27738-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27741-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27741-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Configuration">Configuration</a>
+        </span>            </div>
+
+        <div id="children27741-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27796-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27796-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Database+Interaction">Database Interaction</a>
+        </span>            </div>
+
+        <div id="children27796-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27781-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27781-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Excel+Spreadsheet">Excel Spreadsheet</a>
+        </span>            </div>
+
+        <div id="children27781-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus75450-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan75450-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Facebook+Integration">Facebook Integration</a>
+        </span>            </div>
+
+        <div id="children75450-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27722-0" class="plugin_pagetree_childtoggle icon icon-minus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27722-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Forms">Forms</a>
+        </span>            </div>
+
+        <div id="children27722-0" class="plugin_pagetree_children_container">
+                                                        <ul class="plugin_pagetree_children_list" id="child_ul27722-0">
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan45866-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Adding+Dynamic+Field+Prompts+or+Hints">Adding Dynamic Field Prompts or Hints</a>
+        </span>            </div>
+
+        <div id="children45866-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul45866-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27822361-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Automatic+styling+of+form+errors">Automatic styling of form errors</a>
+        </span>            </div>
+
+        <div id="children27822361-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27822361-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan74135-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Conditional+Validation">Conditional Validation</a>
+        </span>            </div>
+
+        <div id="children74135-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul74135-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan47806-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Creating+a+FormComponentAjaxBehavior">Creating a FormComponentAjaxBehavior</a>
+        </span>            </div>
+
+        <div id="children47806-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul47806-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan25200152-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Creating+Custom+FormComponentPanel%27s+to+build+valid+objects+using+Wicket%27s+Form+Validation+Logic">Creating Custom FormComponentPanel's to build valid objects using Wicket's Form Validation Logic</a>
+        </span>            </div>
+
+        <div id="children25200152-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul25200152-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27687-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27687-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/DropDownChoice+Examples">DropDownChoice Examples</a>
+        </span>            </div>
+
+        <div id="children27687-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan31874-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Fancy+validation+using+AJAX%2C+alternatives+to+FeedbackPanel">Fancy validation using AJAX, alternatives to FeedbackPanel</a>
+        </span>            </div>
+
+        <div id="children31874-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul31874-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27820-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Form+control+labels">Form control labels</a>
+        </span>            </div>
+
+        <div id="children27820-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27820-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27867-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Forms+with+dynamic+elements">Forms with dynamic elements</a>
+        </span>            </div>
+
+        <div id="children27867-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27867-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27647-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/How+to+use+the+same+Form+for+editing+and+new">How to use the same Form for editing and new</a>
+        </span>            </div>
+
+        <div id="children27647-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27647-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27645-0" style="font-weight: bold;">                        <a href="./Listview with checkboxes_files/Listview with checkboxes.html">Listview with checkboxes</a>
+        </span>            </div>
+
+        <div id="children27645-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27645-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27788-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Multiple+submit+buttons">Multiple submit buttons</a>
+        </span>            </div>
+
+        <div id="children27788-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27788-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan72889-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Nested+Forms">Nested Forms</a>
+        </span>            </div>
+
+        <div id="children72889-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul72889-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan74635-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Pass+form+input+from+Modal+Window+back+to+the+caller+page">Pass form input from Modal Window back to the caller page</a>
+        </span>            </div>
+
+        <div id="children74635-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul74635-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan74907-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Passing+parameters+to+pages">Passing parameters to pages</a>
+        </span>            </div>
+
+        <div id="children74907-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul74907-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan79250-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Request+Focus+on+a+Specific+Form+Component">Request Focus on a Specific Form Component</a>
+        </span>            </div>
+
+        <div id="children79250-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul79250-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan74641-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Streaming+Files">Streaming Files</a>
+        </span>            </div>
+
+        <div id="children74641-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul74641-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27817-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Using+listviews">Using listviews</a>
+        </span>            </div>
+
+        <div id="children27817-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27817-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27723-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Using+RadioGroups">Using RadioGroups</a>
+        </span>            </div>
+
+        <div id="children27723-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27723-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan74160-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Validating+Form+Components+%28After+Page+Load%29">Validating Form Components (After Page Load)</a>
+        </span>            </div>
+
+        <div id="children74160-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul74160-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27830-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Validating+PasswordTextField+%28wicket-1.2%29">Validating PasswordTextField (wicket-1.2)</a>
+        </span>            </div>
+
+        <div id="children27830-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27830-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan34196-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Validating+related+fields">Validating related fields</a>
+        </span>            </div>
+
+        <div id="children34196-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul34196-0"></ul>
+            </div>
+    </li>
+                                        </ul>
+                                        </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27769-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27769-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/General+Application">General Application</a>
+        </span>            </div>
+
+        <div id="children27769-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27734-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27734-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/i18n">i18n</a>
+        </span>            </div>
+
+        <div id="children27734-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27730-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27730-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Models+and+binding">Models and binding</a>
+        </span>            </div>
+
+        <div id="children27730-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan2328695-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Page+with+dynamic+components">Page with dynamic components</a>
+        </span>            </div>
+
+        <div id="children2328695-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul2328695-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus68268-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan68268-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Portals">Portals</a>
+        </span>            </div>
+
+        <div id="children68268-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan97453-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Use+wicket+as+template+engine">Use wicket as template engine</a>
+        </span>            </div>
+
+        <div id="children97453-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul97453-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27739-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27739-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/View+Layer">View Layer</a>
+        </span>            </div>
+
+        <div id="children27739-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan77042-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Wasp-Swarm+%28Security%29">Wasp-Swarm (Security)</a>
+        </span>            </div>
+
+        <div id="children77042-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul77042-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27812-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Wicket-Extension-related+notes">Wicket-Extension-related notes</a>
+        </span>            </div>
+
+        <div id="children27812-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27812-0"></ul>
+            </div>
+    </li>
+                                        </ul>
+                                        </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27807-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/JavaScript+and+CSS+support">JavaScript and CSS support</a>
+        </span>            </div>
+
+        <div id="children27807-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27807-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus30739858-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan30739858-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Models">Models</a>
+        </span>            </div>
+
+        <div id="children30739858-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27847-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Panel">Panel</a>
+        </span>            </div>
+
+        <div id="children27847-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27847-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan44372-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Property+Expression+Language">Property Expression Language</a>
+        </span>            </div>
+
+        <div id="children44372-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul44372-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27673-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27673-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Testing">Testing</a>
+        </span>            </div>
+
+        <div id="children27673-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27690-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Using+Models">Using Models</a>
+        </span>            </div>
+
+        <div id="children27690-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27690-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27865-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27865-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Wicket%27s+XHTML+tags">Wicket's XHTML tags</a>
+        </span>            </div>
+
+        <div id="children27865-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus74100-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan74100-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Wicket+Inside">Wicket Inside</a>
+        </span>            </div>
+
+        <div id="children74100-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27664-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Wicket+reference">Wicket reference</a>
+        </span>            </div>
+
+        <div id="children27664-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27664-0"></ul>
+            </div>
+    </li>
+                                        </ul>
+                                        </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan64982-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Simple+Hibernate+Master-Detail+Example">Simple Hibernate Master-Detail Example</a>
+        </span>            </div>
+
+        <div id="children64982-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul64982-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27770-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27770-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Uncategorised+Notes">Uncategorised Notes</a>
+        </span>            </div>
+
+        <div id="children27770-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27659-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Uploading+and+Downloading+Files">Uploading and Downloading Files</a>
+        </span>            </div>
+
+        <div id="children27659-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27659-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan95795-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Wicket+Ajax+rewriting">Wicket Ajax rewriting</a>
+        </span>            </div>
+
+        <div id="children95795-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul95795-0"></ul>
+            </div>
+    </li>
+                                            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27842-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Wicket-contrib-database-usage">Wicket-contrib-database-usage</a>
+        </span>            </div>
+
+        <div id="children27842-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27842-0"></ul>
+            </div>
+    </li>
+                                        </ul>
+                                        </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus31297-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan31297-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Netbeans+IDE">Netbeans IDE</a>
+        </span>            </div>
+
+        <div id="children31297-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27702-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27702-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Projects">Projects</a>
+        </span>            </div>
+
+        <div id="children27702-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan81360-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Related+Projects+and+Tools">Related Projects and Tools</a>
+        </span>            </div>
+
+        <div id="children81360-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul81360-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan14812073-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Selenium+Tips">Selenium Tips</a>
+        </span>            </div>
+
+        <div id="children14812073-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul14812073-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan30745220-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Serialization+Checker">Serialization Checker</a>
+        </span>            </div>
+
+        <div id="children30745220-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul30745220-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan4589264-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Settings+for+testing">Settings for testing</a>
+        </span>            </div>
+
+        <div id="children4589264-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul4589264-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan4063271-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Setup+Eclipse">Setup Eclipse</a>
+        </span>            </div>
+
+        <div id="children4063271-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul4063271-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan5604300-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Setup+HSQLDB">Setup HSQLDB</a>
+        </span>            </div>
+
+        <div id="children5604300-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul5604300-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan26804430-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Setup+IntelliJ+IDEA">Setup IntelliJ IDEA</a>
+        </span>            </div>
+
+        <div id="children26804430-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul26804430-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan4063250-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Setup+JDK">Setup JDK</a>
+        </span>            </div>
+
+        <div id="children4063250-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul4063250-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan5604273-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Setup+Liferay">Setup Liferay</a>
+        </span>            </div>
+
+        <div id="children5604273-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul5604273-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan4063257-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Setup+Maven">Setup Maven</a>
+        </span>            </div>
+
+        <div id="children4063257-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul4063257-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan5604298-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Setup+PostgreSQL">Setup PostgreSQL</a>
+        </span>            </div>
+
+        <div id="children5604298-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul5604298-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan4325674-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Setup+Tomcat">Setup Tomcat</a>
+        </span>            </div>
+
+        <div id="children4325674-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul4325674-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan67008-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Slides+and+presentations">Slides and presentations</a>
+        </span>            </div>
+
+        <div id="children67008-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul67008-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan4325622-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Subclipse">Subclipse</a>
+        </span>            </div>
+
+        <div id="children4325622-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul4325622-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27671-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/TODO">TODO</a>
+        </span>            </div>
+
+        <div id="children27671-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27671-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan53907-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Using+GWT+Widgets+as+Wicket+Components+%28Tutorial%29">Using GWT Widgets as Wicket Components (Tutorial)</a>
+        </span>            </div>
+
+        <div id="children53907-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul53907-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus81311-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan81311-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Websites+based+on+Wicket">Websites based on Wicket</a>
+        </span>            </div>
+
+        <div id="children81311-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan88763-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Wicket+Component+JAR+Metadata">Wicket Component JAR Metadata</a>
+        </span>            </div>
+
+        <div id="children88763-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul88763-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan66524-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Wicket+Employers">Wicket Employers</a>
+        </span>            </div>
+
+        <div id="children66524-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul66524-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan5604330-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Wicket+Examples+as+portlets">Wicket Examples as portlets</a>
+        </span>            </div>
+
+        <div id="children5604330-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul5604330-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27728-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Wicket+IRC">Wicket IRC</a>
+        </span>            </div>
+
+        <div id="children27728-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27728-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27825111-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Wicket+Meta">Wicket Meta</a>
+        </span>            </div>
+
+        <div id="children27825111-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul27825111-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus27765-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan27765-0">                        <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27765">Wicket Press &amp; User Stories</a>
+        </span>            </div>
+
+        <div id="children27765-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                    <span class="no-children icon icon-square"></span>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan3475186-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Wicket+Products">Wicket Products</a>
+        </span>            </div>
+
+        <div id="children3475186-0" class="plugin_pagetree_children_container">
+                    <ul class="plugin_pagetree_children_list" id="child_ul3475186-0"></ul>
+            </div>
+    </li>
+            <li>
+    <div class="plugin_pagetree_childtoggle_container">
+                                             <a id="plusminus30739845-0" class="plugin_pagetree_childtoggle icon icon-plus" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">                
+            </a>
+            </div>
+    <div class="plugin_pagetree_children_content">
+                    <span class="plugin_pagetree_children_span" id="childrenspan30739845-0">                        <a href="https://cwiki.apache.org/confluence/display/WICKET/Wicket+Roadmap+and+Versions">Wicket Roadmap and Versions</a>
+        </span>            </div>
+
+        <div id="children30739845-0" class="plugin_pagetree_children_container">
+                                                            </div>
+    </li>
+    </ul>
+</div>
+    </ul>
+
+    <fieldset class="hidden">
+        <input type="hidden" name="treeId" value="">
+        <input type="hidden" name="treeRequestId" value="/confluence/plugins/pagetree/naturalchildren.action?decorator=none&amp;excerpt=false&amp;sort=position&amp;reverse=false&amp;disableLinks=false">
+        <input type="hidden" name="treePageId" value="27645">
+
+        <input type="hidden" name="noRoot" value="false">
+        <input type="hidden" name="rootPageId" value="27829">
+
+        <input type="hidden" name="rootPage" value="">
+        <input type="hidden" name="startDepth" value="0">
+        <input type="hidden" name="spaceKey" value="WICKET">
+
+        <input type="hidden" name="i18n-pagetree.loading" value="Wird geladen...">
+        <input type="hidden" name="i18n-pagetree.error.permission" value="Die Seitenhierarchie kann nicht geladen werden. Sie sind anscheinend nicht berechtigt, die Startseite anzuzeigen.">
+        <input type="hidden" name="i18n-pagetree.eeror.general" value="Beim Abrufen der Seitenhierarchie ist ein Fehler aufgetreten. Weitere Informationen finden Sie in der Serverprotokolldatei.">
+        <input type="hidden" name="loginUrl" value="/confluence/login.action?os_destination=%2Fdisplay%2FWICKET%2FListview%2Bwith%2Bcheckboxes">
+
+                <fieldset class="hidden">
+                                                <input type="hidden" name="ancestorId" value="27722">
+                                    <input type="hidden" name="ancestorId" value="27650">
+                                    <input type="hidden" name="ancestorId" value="27841">
+                                    <input type="hidden" name="ancestorId" value="27849">
+                                    <input type="hidden" name="ancestorId" value="27829">
+                                    </fieldset>
+    </fieldset>
+</div>
+
+
+
+            </div><div class="vsplitbar" unselectable="on" style="z-index: 10; position: absolute; -webkit-user-select: none; cursor: e-resize; left: 300px; height: 360px;"><a href="javascript:void(0)" accesskey="L" tabindex="0" title="vsplitbar"></a></div>
+    <div id="splitter-content" style="position: absolute; z-index: 0; left: 305px; width: 719px; height: 360px;">
+
+                    <script type="text/javascript" src="./Listview with checkboxes_files/doc-theme.js"></script>
+    
+            
+    
+<div id="main">
+    <div id="main-header">
+	    
+	    
+    <div id="navigation" class="content-navigation view">
+        <fieldset class="hidden parameters">
+            <input type="hidden" id="pageId" value="27645">
+        </fieldset>
+        <ul class="ajs-menu-bar">
+                                
+                        
+            <li class="normal ajs-menu-item">
+        <a id="action-menu-link" class="action trigger ajs-menu-title" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#"><span><span>Extras</span></span></a>         <div class="ajs-drop-down most-right-menu-item assistive" hidden="">
+                        <ul id="action-menu-link-primary" class="section-primary first">
+                                        <li>
+    
+        
+    
+    <a id="view-attachments-link" href="https://cwiki.apache.org/confluence/pages/viewpageattachments.action?pageId=27645" class="action-view-attachments" accesskey="a" title="Anhänge anzeigen ( Typ &#39;t&#39; )">
+                   <span><u>A</u>nhänge (0)</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="action-view-history-link" href="https://cwiki.apache.org/confluence/pages/viewpreviousversions.action?pageId=27645" class="action-view-history" title="">
+                   <span>Änderungshistorie</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="action-page-permissions-link" href="https://cwiki.apache.org/confluence/pages/viewinfo.action?pageId=27645" class="action-page-permissions" title="Beschränkungen bearbeiten">
+                   <span>Beschränkungen</span></a>        </li>
+                            </ul>
+                        <ul id="action-menu-link-secondary" class="section-secondary">
+                                        <li>
+    
+        
+    
+    <a id="view-page-info-link" href="https://cwiki.apache.org/confluence/pages/viewinfo.action?pageId=27645" class="action-view-info" title="">
+                   <span><u>I</u>nfo</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="link-to-page-link" href="https://cwiki.apache.org/confluence/pages/viewinfo.action?pageId=27645" class="" title="Link zu dieser Seite ( Typ &#39;k&#39; )">
+                   <span>Link zu dieser Seite…</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="view-in-hierarchy-link" href="https://cwiki.apache.org/confluence/pages/listpages-dirview.action?key=WICKET&openId=27645#selectedPageInHierarchy" class="" title="">
+                   <span>Hierarchisch anzeigen</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="action-view-source-link" href="https://cwiki.apache.org/confluence/pages/viewpagesrc.action?pageId=27645" class="action-view-source popup-link" title="">
+                   <span>Wiki-Markup anzeigen</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="action-export-pdf-link" href="https://cwiki.apache.org/confluence/spaces/flyingpdf/pdfpageexport.action?pageId=27645" class="" title="">
+                   <span>In PDF exportieren</span></a>        </li>
+                                        <li>
+    
+        
+    
+    <a id="action-export-word-link" href="https://cwiki.apache.org/confluence/exportword?pageId=27645" class="action-export-word" title="">
+                   <span>In Word exportieren</span></a>        </li>
+                            </ul>
+                    </div>
+    </li>
+            </ul>
+    </div>
+
+	    
+	    <h1 id="title-heading" class="pagetitle">
+	        	            <a href="https://cwiki.apache.org/confluence/display/WICKET"><img class="logo space custom" src="./Listview with checkboxes_files/WICKET" alt=""></a>	        	
+			<span id="title-text">
+							            <a href="./Listview with checkboxes_files/Listview with checkboxes.html">Listview with checkboxes</a>
+    						</span>
+	    </h1>
+	</div>
+
+    
+
+    
+    
+    
+    <div id="content" class="page view">
+    
+
+
+
+<div id="link-to-page-fields" class="hidden parameters">
+    <input type="hidden" id="linkToThisPageHeading" value="Link zu dieser Seite">
+    <input type="hidden" id="linkToThisPageLink" value="Verknüpfung">
+    <input type="hidden" id="linkToThisPageTinyLink" value="Kurzer Link">
+    <input type="hidden" id="linkToThisPageWikiMarkup" value="Wiki-Markup">
+    <input type="hidden" id="linkToThisPageClose" value="Schließen">
+</div>
+<fieldset class="hidden parameters">
+    <input type="hidden" title="movePageDialogViewPageTitle" value="Seite verschieben – ‘Listview with checkboxes’">
+    <input type="hidden" title="movePageDialogEditPageTitle" value="Speicherort der Seite einstellen">
+    <input type="hidden" title="movePageDialogMoveButton" value="Verschieben">
+    <input type="hidden" title="movePageDialogCancelButton" value="Abbrechen">
+    <input type="hidden" title="movePageDialogBrowsePanelTip" value="Klicken Sie, um die neue übergeordnete Seite für diese Seite und ihre untergeordneten Seiten auszuwählen.">
+    <input type="hidden" title="movePageDialogSearchPanel" value="Suche">
+    <input type="hidden" title="movePageDialogHistoryPanel" value="Kürzlich angezeigt">
+    <input type="hidden" title="movePageDialogHistoryNoResults" value="Es wurden keine kürzlich angezeigten Seiten gefunden.">
+    <input type="hidden" title="movePageDialogLocationPanel" value="Bekannter Speicherort">
+    <input type="hidden" title="movePageDialogLocationNotFound" value="Die angegebene Seite wurde nicht gefunden.">
+    <input type="hidden" title="movePageDialogBrowsePanel" value="Durchsuchen">
+    <input type="hidden" title="movePageDialogPanelLoadErrorMsg" value="Fehler beim Lesen des Anzeigeninhalts vom Server.">
+    <input type="hidden" title="movePageDialogPanelLoadErrorTip" value="Versuchen Sie, die Seite neu zu laden und den Dialog erneut zu starten.">
+    <input type="hidden" title="movePageDialogPanelLoadErrorStatus" value="HTTP-Status">
+    <input type="hidden" title="movePageDialogNoSelectionErrorMsg" value="Sie müssen eine Auswahl in der Hierarchie treffen, bevor Sie die Seite bewegen können.">
+    <input type="hidden" title="movePageDialogSearchError" value="Fehler beim Abrufen der Suchergebnisse vom Server.">
+    <input type="hidden" title="movePageDialogSearchNoResults" value="Es wurden keine Seiten mit dem Inhalt &lt;b&gt;{0}&lt;/b&gt; gefunden.">
+    <input type="hidden" title="movePageDialogSearchResultCount" value="Es werden &lt;b&gt;{0}&lt;/b&gt;-&lt;b&gt;{1}&lt;/b&gt; von &lt;b&gt;{2}&lt;/b&gt; Seiten mit dem Inhalt &lt;b&gt;{3}&lt;/b&gt; angezeigt.">
+    <input type="hidden" title="movePageDialogMoveFailed" value="Fehler beim Verschieben. Beim Herstellen der Verbindung mit dem Server ist ein Problem aufgetreten.">
+    <input type="hidden" title="movePageDialogCannotChangeSpace" value="Sie können diese Seite nicht in einen anderen Bereich verschieben, weil Sie nicht berechtigt sind, sie aus diesem Bereich zu verschieben.">
+    <input type="hidden" title="pageTitle" value="Listview with checkboxes">
+    <input type="hidden" title="parentPageTitle" value="Forms">
+    <input type="hidden" title="fromPageTitle" value="">
+    <input type="hidden" title="spaceKey" value="WICKET">
+    <input type="hidden" title="spaceName" value="Apache Wicket">
+    <input type="hidden" title="movePageDialogInvalidLocation" value="Sie können eine Seite nicht unter sie selbst oder ihre untergeordneten Seiten verschieben.">
+    <input type="hidden" title="movePageDialogOrderingTitle" value="Seitensortierung">
+    <input type="hidden" title="movePageDialogBackButton" value="Zurück">
+    <input type="hidden" title="movePageDialogMoveAndOrderButton" value="Neu sortieren">
+    <input type="hidden" title="movePageDialogNextButton" value="Verschieben">
+</fieldset>
+
+<script type="text/x-template" title="movePageDialog">
+    <div class="row information">
+        <div class="inner">
+            <div class="element">
+                Geben Sie Bereich und Überschrift der neuen übergeordneten Seite und der untergeordneten Seiten für diese Seite an.
+            </div>
+        </div>
+    </div>
+    <div class="form">
+        <fieldset>
+                
+
+    <legend class="assistive"><span>Die Übergeordnete Seite zu einer Bekannten Seite ändern</span></legend>
+            <div class="row">
+                <label for="new-space">Neuer Bereich:</label>
+                <div class="value new-space-value">
+                    <input id="new-space-key" name="new-space-key" type="hidden" value="WICKET">
+                                            <span class="space-input">
+                            <input id="new-space" name="new-space" value="Apache Wicket" disabled="disabled">
+                        </span>
+                        <span class="description warning">Sie können diese Seite nicht in einen anderen Bereich verschieben, weil Sie nicht berechtigt sind, sie aus diesem Bereich zu verschieben.</span>
+                                        <div class="new-space-dropdown aui-dd-parent autocomplete"></div>
+                </div>
+            </div>
+            <div class="row">
+                <label for="new-parent-page">Neue übergeordnete Seite:</label>
+                <div class="value new-parent-page-value">
+                    <span class="page-input">
+                        <input id="new-parent-page" name="new-parent-page" value="Forms">
+                    </span>
+                    <span class="description">Wenn Sie beginnen, einen Seitentitel einzugeben, wird eine Liste mit Vorschlägen angezeigt.</span>
+                    <div class="new-parent-page-dropdown aui-dd-parent autocomplete"></div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="location-info">
+        <div class="row">
+            <label>Aktueller Ort:</label>
+            <div class="value breadcrumbs-container">
+                <div class="breadcrumbs-line">
+                    <ul id="current-parent-breadcrumbs" class="breadcrumbs">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <label>Neuer Ort:</label>
+            <div class="value breadcrumbs-container">
+                <div class="breadcrumbs-line">
+                    <ul id="new-parent-breadcrumbs" class="breadcrumbs">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/x-template" title="movePageErrors">
+    <div id="move-errors" class="hidden warning"></div>
+</script>
+<script type="text/x-template" title="movePageBreadcrumb">
+    <li><a class="{2}" title="{3}" tabindex="-1"><span>{0}</span></a></li>
+</script>
+<script type="text/x-template" title="movePageBreadcrumbLoading">
+    <li class="loading"><span>Breadcrumbs&hellip; werden geladen</span></li>
+</script>
+<script type="text/x-template" title="movePageBreadcrumbError">
+    <li class="warning last"><span>Fehler beim Abrufen der Breadcrumbs.</span></li>
+</script>
+<script type="text/x-template" title="movePageNoMatchingPages">
+    <ol><li><span class="warning">Es wurden keine übereinstimmenden Seiten gefunden.</span></li></ol>
+</script>
+<script type="text/x-template" title="movePageNoMatchingSpaces">
+    <ol><li><span class="warning">Es wurden keine übereinstimmenden Bereiche gefunden.</span></li></ol>
+</script>
+
+<script type="text/x-template" title="movePageSearchPanel">
+    <div class="row information">
+        <div class="inner">
+            <div class="element">
+                Suchen Sie die neue übergeordnete Seite für diese Seite und ihre untergeordneten Seiten und wählen Sie sie aus.
+            </div>
+        </div>
+    </div>
+    <div id="move-page-search-container" class="row">
+        <div class="search-form">
+            <fieldset>
+                    
+
+    <legend class="assistive"><span>Nach einer Neuen Übergeordneten Seite suchen</span></legend>
+                    
+
+    <label  for="move-page-search-query" class="assistive">Stichworte suchen</label>
+                <input class="search-query" id="move-page-search-query">
+                    
+
+    <label  for="move-page-search-space" class="assistive">In Bereich suchen</label>
+                                    <select id="move-page-search-space" class="search-space" disabled="disabled">
+                        <option value="WICKET" selected="selected">Apache Wicket</option>
+                    </select>
+                                <input type="button" value="Suche">
+                                    <div class="description warning">Sie können diese Seite nicht in einen anderen Bereich verschieben, weil Sie nicht berechtigt sind, sie aus diesem Bereich zu verschieben.</div>
+                            </fieldset>
+        </div>
+        <div class="search-results">
+        </div>
+    </div>
+</script>
+<script type="text/x-template" title="movePageSearchResultsLoading">
+    <div class="searching">Suche läuft…</div>
+</script>
+
+<script type="text/x-template" title="movePageHistoryPanel">
+    <div class="row information">
+        <div class="inner">
+            <div class="element">
+                Wählen Sie die neue übergeordnete Seite für diese Seite und ihre untergeordneten Seiten aus ihrer Historie aus.
+            </div>
+        </div>
+    </div>
+    <div id="move-page-search-container" class="row">
+        <div class="search-results">
+        </div>
+    </div>
+</script>
+<script type="text/x-template" title="movePageHistoryLoading">
+    <div class="searching">Wird geladen...</div>
+</script>
+<script type="text/x-template" title="movePageBrowsePanel">
+    <div class="row information">
+        <div class="inner">
+            <div class="element">
+                Klicken Sie, um die neue übergeordnete Seite für diese Seite und ihre untergeordneten Seiten auszuwählen.
+            </div>
+        </div>
+    </div>
+    <div class="tree"></div>
+</script>
+<script type="text/x-template" title="movePagePanelLoading">
+    <span>Wird geladen...</span>
+</script>
+<script type="text/x-template" title="movePageBrowsePanelSpace">
+    <ul><li id='tree-root-node-item' class='root-node-list-item'><a class='root-node' href='#'>{0}</a></li></ul>
+</script>
+<script type="text/x-template" title="orderingPagePanel">
+<div id="orderingPlaceHolder"></div>
+</script>
+<script type="text/x-template" title="reorderCheckbox">
+<span id="reorderRequirement"><input id="reorderCheck" type="checkbox" name="reorderFlag" title="Wählen Sie den Speicherort Ihrer Seite oben im Bereich aus."/><label for="reorderCheck" title="Wählen Sie den Speicherort Ihrer Seite oben im Bereich aus.">Neu sortieren</label></span>
+</script>
+<script type="text/x-template" title="move-help-link">
+    <div class="dialog-help-link">
+            <a href="http://docs.atlassian.com/confluence/docs-35/Moving+a+Page" target="_blank">Hilfe</a>
+    </div>
+</script>
+<script type="text/x-template" title="searchResultsGrid">
+    <table>
+        <thead>
+            <tr class="header">
+                <th class="search-result-title">Seitenname</th>
+                <th class="search-result-space">Bereich</th>
+                <th class="search-result-date">Aktualisiert</th>
+            </tr>
+        </thead>
+    </table>
+</script>
+<script type="text/x-template" title="searchResultsGridCount">
+    <p class="search-result-count">{0}</p>
+</script>
+<script type="text/x-template" title="searchResultsGridRow">
+    <tr class="search-result">
+        <th class="search-result-title"><a href="{1}" class="content-type-{2}"><span>{0}</span></a></th>
+        <td class="search-result-space"><a class="space" href="/confluence/display/{4}/" title="{3}">{3}</a></td>
+        <td class="search-result-date"><span class="date" title="{6}">{5}</span></td>
+    </tr>
+</script>
+<!-- Start restrictions section -->
+<script type="text/x-template" title="page-permissions-div">
+<div id="page-permissions-div">
+    <div id="page-permissions-editor-form">
+
+                <div id="page-permissions-error-div" class="hidden">
+            <a href="#" id="permissions-error-div-close">OK</a>
+            <div></div>
+        </div>
+
+                <div id="page-permissions-type-radios" class="page-permissions-label-rows">
+            <div>
+                <input id="restrictViewRadio" type="radio" checked="checked" name="pagePermissionTypeRadio" value="view"/>
+                <label for="restrictViewRadio">Anzeige dieser Seite beschränken</label>
+                <input id="restrictEditRadio" type="radio" name="pagePermissionTypeRadio" value="edit"/>
+                <label for="restrictEditRadio">Bearbeitung dieser Seite beschränken</label>
+            </div>
+        </div>
+        <div id="page-permissions-input" class="page-permissions-label-rows">
+            <div class="page-permissions-label">An:</div>
+            <div id="page-permissions-chooser-box">
+                                <span id="page-permissions-choose-user" class="ajs-button">
+                    
+
+
+
+    
+
+
+
+<a href="#" id='userpicker-popup-link-image' onClick="var picker = window.open('/confluence/spaces/openuserpicker.action?key=WICKET&amp;startIndex=0&amp;onPopupSubmit=AJS.PagePermissions.addUserPermissions', 'EntitiesPicker', 'status=yes,resizable=yes,top=100,left=200,width=700,height=680,scrollbars=yes'); picker.focus(); return false;"><img src="/confluence/s/en/2176/1/_/images/icons/user_16.gif" height=16 width=16 border=0 align="absmiddle"  title="Choose users" /></a>
+<a href="#" id='userpicker-popup-link-text' onClick="var picker = window.open('/confluence/spaces/openuserpicker.action?key=WICKET&amp;startIndex=0&amp;onPopupSubmit=AJS.PagePermissions.addUserPermissions', 'EntitiesPicker', 'status=yes,resizable=yes,top=100,left=200,width=700,height=680,scrollbars=yes'); picker.focus(); return false;">Person...</a>
+
+
+                </span>
+                <span id="page-permissions-choose-group" class="ajs-button">
+                    
+
+
+
+    
+
+ 
+
+<a href="#" id='grouppicker-popup-link-image' onClick="var picker = window.open('/confluence/spaces/opengrouppicker.action?key=WICKET&amp;startIndex=0&amp;actionName=dosearchgroups.action&amp;onPopupSubmit=AJS.PagePermissions.addGroupPermissions', 'EntitiesPicker', 'status=yes,resizable=yes,top=100,left=200,width=580,height=550,scrollbars=yes'); picker.focus(); return false;"><img src="/confluence/s/en/2176/1/_/images/icons/group_16.gif" height=16 width=16 border=0 align="absmiddle"  title="Choose groups" /></a>
+<a href="#" id='grouppicker-popup-link-text' onClick="var picker = window.open('/confluence/spaces/opengrouppicker.action?key=WICKET&amp;startIndex=0&amp;actionName=dosearchgroups.action&amp;onPopupSubmit=AJS.PagePermissions.addGroupPermissions', 'EntitiesPicker', 'status=yes,resizable=yes,top=100,left=200,width=580,height=550,scrollbars=yes'); picker.focus(); return false;">Gruppe...</a>
+
+
+                </span>
+            </div>
+            <div id="page-permissions-input-box">
+                                <span>
+                    <input type="text" id="page-permissions-names-input" class="input-placeholder" value="Benutzer-/Gruppennamen eingeben" name="permissionNames" size="30" autocomplete="off"/>
+                </span>
+                <input
+    type="hidden"
+                            id="page-permissions-names-hidden"           />                <img height="16px" width="1px" src="/confluence/s/en/2176/1/_/images/border/spacer.gif"/>
+                <input type="button" id="add-typed-names" value="Beschränken">
+            </div>
+        </div>
+    </div>
+    <div id="page-permissions-tables">
+        <div id="page-permissions-table-div">
+                        <table id="page-permissions-table" class="page-permissions-table">
+                <tr id="page-permissions-no-views" class="marker-row">
+                    <td colspan="3" class="page-permissions-marker-cell"><span>Für diese Seite sind keine Anzeigebeschränkungen festgelegt.</span></td>
+                </tr>
+                <tr id="page-permissions-no-edits" class="marker-row">
+                    <td colspan="3" class="page-permissions-marker-cell"><span>Für diese Seite sind keine Bearbeitungsbeschränkungen festgelegt.</span></td>
+                </tr>
+            </table>
+        </div>
+        <div id="page-inherited-permissions-table-div" class="hidden">
+            <span id="page-inherited-permissions-table-desc">
+                <a class="icon twisty-closed">Ein-/Ausblenden</a>
+                <a id="toggle-inherited-permissions" title="Übernommene Beschränkungen durch Klicken anzeigen">Diese Seite enthält beschränkte übergeordnete Seiten. Sie kann nur von Benutzern verwendet werden, die diese übergeordneten Seiten sehen können.</a>
+            </span>
+            <div id="page-inherited-permissions-tables" class="hidden page-inheritance-togglable"></div>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/x-template" title="permissions-row-template">
+    <tr class="permission-row">
+                                
+                <td class="page-permissions-marker-cell" width="20%">
+            <span>Ansicht beschränkt auf:</span>
+        </td>
+                <td class="permission-entity" nowrap="true" width="40%">
+            <span class="entity-container">
+                <img class="permission-entity-picture"/>
+                <span class="permission-entity-display-name"></span>
+                <span class="permission-entity-name-wrap">&nbsp;(<span class="permission-entity-name"></span>)</span>
+            </span>
+        </td>
+        <td class="permission-detail-column">
+            <div class="permission-remove-div">
+                <a href="#" class="remove-permission-link">Beschränkung entfernen</a>
+            </div>
+        </td>
+    </tr>
+</script>
+<script type="text/x-template" title="permissions-username-no-suggestion-template">
+    <ol>
+        <li><a href="#" class="message"><span>Keine Treffer</span></a></li>
+    </ol>
+</script>
+<script type="text/x-template" title="page-inherited-permissions-table-div-template">
+        <div class="page-inherited-permissions-owner-div">
+        <div class="page-inherited-permissions-table-desc">Die Anzeigebeschränkungen gelten für “<a></a>”. Um “<span></span>” anzeigen zu können, muss ein Benutzer in der folgenden Benutzer- und Gruppenliste enthalten sein:</div>
+        <table class="page-permissions-table"></table>
+    </div>
+</script>
+<script type="text/x-template" title="page-restrictions-help-link">
+    <div class="dialog-help-link">
+            <a href="http://docs.atlassian.com/confluence/docs-35/Page+Restrictions" target="_blank">Hilfe</a>
+    </div>
+</script>
+<!-- End restrictions section -->
+
+<fieldset class="hidden parameters">
+    <input type="hidden" title="spaceKeyEncoded" value="WICKET">
+    <input type="hidden" title="spaceKeyDecoded" value="WICKET">
+</fieldset>
+
+
+        
+    
+    
+        <fieldset class="hidden parameters">
+            <input type="hidden" title="parentPageId" value="27722">
+        </fieldset>
+
+        
+                            
+    
+
+                    
+
+        
+        <a href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#page-metadata-end" class="assistive">Zum Ende der Metadaten springen</a>
+<div id="page-metadata-start" class="assistive"></div>
+
+    <div class="page-metadata">
+        <ul>
+                            <li class="page-metadata-item noprint">
+    
+            
+    
+    <a id="content-metadata-page-restrictions" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#" class="page-metadata-icon page-restrictions hidden" title="Es gelten Seitenbeschränkungen. Klicken Sie auf das Sperrsymbol, um die Beschränkungen anzuzeigen oder zu bearbeiten.">
+                   <span>Es gelten Seitenbeschränkungen</span></a>        </li>
+                        <li class="page-metadata-modification-info">
+                                    Hinzugefügt von <a href="https://cwiki.apache.org/confluence/display/~admin" class="url fn">Confluence Administrator</a>, zuletzt bearbeitet von <a href="https://cwiki.apache.org/confluence/display/~al@humantouch.de" class="url fn">Alexander Lohse</a> am Mar 21, 2009
+                                                                <span class="noprint">&nbsp;(<a id="view-change-link" href="https://cwiki.apache.org/confluence/pages/diffpages.action?pageId=27645&originalId=113012">Änderung anzeigen</a>)</span>
+                                                </li>
+                            <li class="show-hide-comment-link">
+                    <a id="show-version-comment" class="inline-control-link" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">Kommentar einblenden</a>
+                    <a id="hide-version-comment" class="inline-control-link" style="display:none;" href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#">Kommentar ausblenden</a>
+                </li>
+                    </ul>
+          <div id="version-comment" class="noteMacro" style="display: none;">
+      <strong>Kommentar:</strong>
+      added setReuseItems(true) on the ListView<br>
+  </div>
+    </div>
+
+
+<a href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#page-metadata-start" class="assistive">Zum Anfang der Metadaten springen</a>
+<div id="page-metadata-end" class="assistive"></div>
+        
+        <fieldset class="hidden parameters">
+                        <input type="hidden" title="browsePageTreeMode" value="view">
+        </fieldset>
+
+        <div class="wiki-content">
+           <!-- wiki content -->
+            
+<p>Using checkboxes to select items in a listview is a common thing to do. For example, you want to select items to delete from a list.</p>
+
+<p>The easiest and neatest way to do this is probably using a org.apache.wicket.markup.html.form.CheckGroup</p>
+
+<p>Another way to do this, is to wrap your 'business objects' so that it has an additional boolean property that you can use in your form. The following example uses such a wrapper, where the 'name' field is the wrapped object.</p>
+
+<p>The wrapper:</p>
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div><div id="highlighter_805788" class="syntaxhighlighter nogutter  java"><div class="toolbar"><span><a href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#" class="toolbar_item command_help help">Hilfe</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container" title="Hint: double-click to select code"><div class="line number1 index0 alt2"><code class="java preprocessor">/**</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;</code><code class="java preprocessor">* name is the wrapped object that could be your business object.</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;</code><code class="java preprocessor">* the selected property is just here to record whether the checkbox for</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;</code><code class="java preprocessor">* it was selected.</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;</code><code class="java preprocessor">*/</code></div><div class="line number6 index5 alt1"><code class="java keyword">private</code> <code class="java keyword">class</code> <code class="java plain">NameWrapper </code><code class="java keyword">implements</code> <code class="java plain">Serializable</code></div><div class="line number7 index6 alt2"><code class="java plain">{</code></div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">private</code> <code class="java plain">String name;</code></div><div class="line number9 index8 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">private</code> <code class="java plain">Boolean selected = Boolean.FALSE;</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">NameWrapper(String wrapped)</code></div><div class="line number12 index11 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number13 index12 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">this</code><code class="java plain">.name = wrapped;</code></div><div class="line number14 index13 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number15 index14 alt2">&nbsp;</div><div class="line number16 index15 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">Boolean getSelected()</code></div><div class="line number17 index16 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number18 index17 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">return</code> <code class="java plain">selected;</code></div><div class="line number19 index18 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number20 index19 alt1">&nbsp;</div><div class="line number21 index20 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">setSelected(Boolean selected)</code></div><div class="line number22 index21 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number23 index22 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">this</code><code class="java plain">.selected = selected;</code></div><div class="line number24 index23 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number25 index24 alt2">&nbsp;</div><div class="line number26 index25 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">String getName()</code></div><div class="line number27 index26 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number28 index27 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">return</code> <code class="java plain">name;</code></div><div class="line number29 index28 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number30 index29 alt1">&nbsp;</div><div class="line number31 index30 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">setName(String wrapped)</code></div><div class="line number32 index31 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number33 index32 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">this</code><code class="java plain">.name = wrapped;</code></div><div class="line number34 index33 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number35 index34 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number36 index35 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">String toString()</code></div><div class="line number37 index36 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number38 index37 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">return</code> <code class="java plain">name + </code><code class="java string">": "</code> <code class="java plain">+ selected;</code></div><div class="line number39 index38 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number40 index39 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div></div>
+<p>The page with the form and list view:</p>
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div><div id="highlighter_812602" class="syntaxhighlighter nogutter  java"><div class="toolbar"><span><a href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#" class="toolbar_item command_help help">Hilfe</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container" title="Hint: double-click to select code"><div class="line number1 index0 alt2"><code class="java keyword">import</code> <code class="java plain">java.io.Serializable;</code></div><div class="line number2 index1 alt1"><code class="java keyword">import</code> <code class="java plain">java.util.ArrayList;</code></div><div class="line number3 index2 alt2"><code class="java keyword">import</code> <code class="java plain">java.util.List;</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="java keyword">import</code> <code class="java plain">wicket.IFeedback;</code></div><div class="line number6 index5 alt1"><code class="java keyword">import</code> <code class="java plain">wicket.markup.html.WebPage;</code></div><div class="line number7 index6 alt2"><code class="java keyword">import</code> <code class="java plain">wicket.markup.html.basic.Label;</code></div><div class="line number8 index7 alt1"><code class="java keyword">import</code> <code class="java plain">wicket.markup.html.form.CheckBox;</code></div><div class="line number9 index8 alt2"><code class="java keyword">import</code> <code class="java plain">wicket.markup.html.form.Form;</code></div><div class="line number10 index9 alt1"><code class="java keyword">import</code> <code class="java plain">wicket.markup.html.list.ListItem;</code></div><div class="line number11 index10 alt2"><code class="java keyword">import</code> <code class="java plain">wicket.markup.html.list.ListView;</code></div><div class="line number12 index11 alt1"><code class="java keyword">import</code> <code class="java plain">wicket.markup.html.panel.FeedbackPanel;</code></div><div class="line number13 index12 alt2"><code class="java keyword">import</code> <code class="java plain">wicket.model.PropertyModel;</code></div><div class="line number14 index13 alt1">&nbsp;</div><div class="line number15 index14 alt2"><code class="java preprocessor">/** input web page. */</code></div><div class="line number16 index15 alt1"><code class="java keyword">public</code> <code class="java keyword">class</code> <code class="java plain">FormInput </code><code class="java keyword">extends</code> <code class="java plain">WebPage</code></div><div class="line number17 index16 alt2"><code class="java plain">{</code></div><div class="line number18 index17 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">FormInput()</code></div><div class="line number19 index18 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number20 index19 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">final</code> <code class="java plain">FeedbackPanel feedback = </code><code class="java keyword">new</code> <code class="java plain">FeedbackPanel(</code><code class="java string">"feedback"</code><code class="java plain">);</code></div><div class="line number21 index20 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">add(feedback);</code></div><div class="line number22 index21 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">add(</code><code class="java keyword">new</code> <code class="java plain">InputForm(</code><code class="java string">"inputForm"</code><code class="java plain">, feedback));</code></div><div class="line number23 index22 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number24 index23 alt1">&nbsp;</div><div class="line number25 index24 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java preprocessor">/** form for processing the input. */</code></div><div class="line number26 index25 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">private</code> <code class="java keyword">class</code> <code class="java plain">InputForm </code><code class="java keyword">extends</code> <code class="java plain">Form</code></div><div class="line number27 index26 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number28 index27 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// holds NameWrapper elements</code></div><div class="line number29 index28 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">private</code> <code class="java plain">List data;</code></div><div class="line number30 index29 alt1">&nbsp;</div><div class="line number31 index30 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">InputForm(String name, IFeedback feedback)</code></div><div class="line number32 index31 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number33 index32 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">super</code><code class="java plain">(name, feedback);</code></div><div class="line number34 index33 alt1">&nbsp;</div><div class="line number35 index34 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// add some dummy data</code></div><div class="line number36 index35 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">data = </code><code class="java keyword">new</code> <code class="java plain">ArrayList();</code></div><div class="line number37 index36 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">data.add(</code><code class="java keyword">new</code> <code class="java plain">NameWrapper(</code><code class="java string">"one"</code><code class="java plain">));</code></div><div class="line number38 index37 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">data.add(</code><code class="java keyword">new</code> <code class="java plain">NameWrapper(</code><code class="java string">"two"</code><code class="java plain">));</code></div><div class="line number39 index38 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">data.add(</code><code class="java keyword">new</code> <code class="java plain">NameWrapper(</code><code class="java string">"three"</code><code class="java plain">));</code></div><div class="line number40 index39 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">data.add(</code><code class="java keyword">new</code> <code class="java plain">NameWrapper(</code><code class="java string">"four"</code><code class="java plain">));</code></div><div class="line number41 index40 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// add a nested list view; as the list is nested in the form, the form will</code></div><div class="line number42 index41 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// update all FormComponent childs automatically.</code></div><div class="line number43 index42 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">ListView listView = </code><code class="java keyword">new</code> <code class="java plain">ListView(</code><code class="java string">"list"</code><code class="java plain">, data)</code></div><div class="line number44 index43 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number45 index44 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">protected</code> <code class="java keyword">void</code> <code class="java plain">populateItem(ListItem item)</code></div><div class="line number46 index45 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number47 index46 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">NameWrapper wrapper = (NameWrapper)item.getModelObject();</code></div><div class="line number48 index47 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">item.add(</code><code class="java keyword">new</code> <code class="java plain">Label(</code><code class="java string">"name"</code><code class="java plain">, wrapper.getName()));</code></div><div class="line number49 index48 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">item.add(</code><code class="java keyword">new</code> <code class="java plain">CheckBox(</code><code class="java string">"check"</code><code class="java plain">, </code><code class="java keyword">new</code> <code class="java plain">PropertyModel(wrapper, </code><code class="java string">"selected"</code><code class="java plain">)));</code></div><div class="line number50 index49 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number51 index50 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">};</code></div><div class="line number52 index51 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">listView.setReuseItems(</code><code class="java keyword">true</code><code class="java plain">);</code></div><div class="line number53 index52 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">add(listView);</code></div><div class="line number54 index53 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number55 index54 alt2">&nbsp;</div><div class="line number56 index55 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">onSubmit()</code></div><div class="line number57 index56 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number58 index57 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">info(</code><code class="java string">"data: "</code> <code class="java plain">+ data); </code><code class="java comments">// print current contents</code></div><div class="line number59 index58 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number60 index59 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number61 index60 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div></div>
+<p>And finally the HTML page (FormInput.html):</p>
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div><div id="highlighter_890403" class="syntaxhighlighter nogutter  html"><div class="toolbar"><span><a href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#" class="toolbar_item command_help help">Hilfe</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container" title="Hint: double-click to select code"><div class="line number1 index0 alt2"><code class="html plain">&lt;</code><code class="html keyword">html</code><code class="html plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="html plain">&lt;</code><code class="html keyword">head</code><code class="html plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="html spaces">&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">title</code><code class="html plain">&gt;Test&lt;/</code><code class="html keyword">title</code><code class="html plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="html plain">&lt;/</code><code class="html keyword">head</code><code class="html plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="html plain">&lt;</code><code class="html keyword">body</code><code class="html plain">&gt;</code></div><div class="line number6 index5 alt1"><code class="html spaces">&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">form</code> <code class="html color1">wicket:id</code><code class="html plain">=</code><code class="html string">"inputForm"</code> <code class="html color1">id</code><code class="html plain">=</code><code class="html string">"inputForm"</code><code class="html plain">&gt;</code></div><div class="line number7 index6 alt2"><code class="html spaces">&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">fieldset</code><code class="html plain">&gt;</code></div><div class="line number8 index7 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">legend</code><code class="html plain">&gt;Checkbox test&lt;/</code><code class="html keyword">legend</code><code class="html plain">&gt;</code></div><div class="line number9 index8 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">span</code> <code class="html color1">wicket:id</code><code class="html plain">=</code><code class="html string">"list"</code><code class="html plain">&gt;</code></div><div class="line number10 index9 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">span</code> <code class="html color1">wicket:id</code><code class="html plain">=</code><code class="html string">"name"</code><code class="html plain">&gt;test&lt;/</code><code class="html keyword">span</code><code class="html plain">&gt;</code></div><div class="line number11 index10 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">input</code> <code class="html color1">wicket:id</code><code class="html plain">=</code><code class="html string">"check"</code> <code class="html color1">type</code><code class="html plain">=</code><code class="html string">"checkbox"</code> <code class="html plain">/&gt;</code></div><div class="line number12 index11 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">span</code><code class="html plain">&gt;</code></div><div class="line number13 index12 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">input</code> <code class="html color1">type</code><code class="html plain">=</code><code class="html string">"submit"</code> <code class="html color1">value</code><code class="html plain">=</code><code class="html string">"save"</code> <code class="html plain">/&gt;</code></div><div class="line number14 index13 alt1"><code class="html spaces">&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">fieldset</code><code class="html plain">&gt;</code></div><div class="line number15 index14 alt2"><code class="html spaces">&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">form</code><code class="html plain">&gt;</code></div><div class="line number16 index15 alt1"><code class="html spaces">&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div><div class="line number17 index16 alt2"><code class="html spaces">&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">span</code> <code class="html color1">wicket:id</code><code class="html plain">=</code><code class="html string">"feedback"</code> <code class="html plain">/&gt;</code></div><div class="line number18 index17 alt1"><code class="html spaces">&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div><div class="line number19 index18 alt2"><code class="html plain">&lt;/</code><code class="html keyword">body</code><code class="html plain">&gt;</code></div><div class="line number20 index19 alt1"><code class="html plain">&lt;/</code><code class="html keyword">html</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div></div>
+
+<p>We've been discussing making working with checkboxes for selections from a list even easier in future, but this example is how I would do it right now.</p>
+        </div>
+
+        <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+         <rdf:Description
+    rdf:about="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes"
+    dc:identifier="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes"
+    dc:title="Listview with checkboxes"
+    trackback:ping="https://cwiki.apache.org/confluence/rpc/trackback/27645"/>
+</rdf:RDF>
+-->
+
+            
+    
+
+
+<fieldset class="hidden parameters">
+    <legend>Labels parameters</legend>
+    <input type="hidden" id="domainName" value="https://cwiki.apache.org/confluence">
+    <input type="hidden" id="pageId" value="27645">
+    <input type="hidden" id="spaceKey" value="WICKET">
+</fieldset>
+
+<div id="labels-section" class="pageSection">
+    <div class="labels-editor">
+        <span id="labels-section-title" class="label-title">
+            <b>Stichwörter:</b>
+        </span>
+        <div id="labels-section-content" class="content-column">
+            <span id="labels-section-title-none" class="label-title none ">
+                Kein
+            </span>
+
+            <div id="labelsList" class="label-list">
+                            </div>
+
+                    </div>
+
+        <span class="errorMessage error" id="errorSpan"></span>
+        <form method="GET" action="" id="add-labels-form">
+            <div id="labelInputSpan" class="labels-input">
+                <div id="labelOperationErrorContainer" class="hidden">
+                    <span class="error"><span class="errorMessage" id="labelOperationErrorMessage"></span></span>
+                </div>
+
+                <div class="caption">Geben Sie Stichwörter ein, die dieser Seite hinzugefügt werden sollen:</div>
+                <div id="label-input-fields">
+                    <input autocomplete="off" id="labelsString" name="labelsString" value="" size="40">
+                    <input id="add-labels-editor-button" type="submit" class="add-labels" value="Hinzufügen">
+                    <input id="close-labels-editor-button" type="submit" class="hide-labels-editor" value="Fertig">
+                </div>
+                <div id="waitImageAndStatus">
+                    <img class="waiting" alt="Please wait" src="./Listview with checkboxes_files/wait.gif">&nbsp;
+                    <span id="labelOperationStatus" class="smalltext"></span>
+                </div>
+                <div id="labelsAutocompleteList" class="aui-dd-parent"></div>
+                <div class="labels-tip">
+                    <div id="suggestedLabelsSpan"></div>
+                    Sie suchen ein Stichwort? Beginnen Sie einfach zu schreiben.
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+            
+            
+
+
+
+
+            
+    
+
+        
+<fieldset class="parameters hidden">
+    <input type="hidden" id="deleteCommentConfirmMessage" value="Wollen Sie den Kommentar wirklich entfernen?">
+    <input type="hidden" id="collapseTooltip" value="Klicken Sie, um die Anzeige dieses Kommentars zu aktivieren bzw. zu deaktivieren.">
+        </fieldset>
+
+<fieldset class="hidden parameters i18n">
+        <input type="hidden" title="i18n.cancel.name" value="Abbrechen">
+</fieldset>
+
+
+
+
+
+
+<div id="comments-section" class="pageSection">
+    
+    
+    
+    
+                                    </div>
+
+
+            
+</div>
+
+
+    
+
+
+
+    
+    
+
+    
+    
+    
+
+
+<script type="text/x-template" title="manage-watchers-dialog">
+<div class="dialog-content">
+    <div class="column page-watchers">
+        <h3>Diese Seite beobachten</h3>
+        <p class="description">Diese Benutzer werden benachrichtigt, wenn Änderungen an der Seite vorgenommen werden. Sie können Personen zu der Liste hinzufügen oder aus der Liste entfernen.</p>
+        <form action="/confluence/json/addwatch.action" method="POST">
+                <input type="hidden" name="atl_token" value="06c764425bb88ae590605076b7a03d0678330489">
+            <input type="hidden" name="pageId" value="27645"/>
+            <input type="hidden" id="add-watcher-username" name="username" value=""/>
+            <label for="add-watcher-user">Benutzer</label>
+            <input id="add-watcher-user" name="userFullName" type="search" class="autocomplete-user"
+               value="" placeholder="Benutzername oder E-Mail" autocomplete="off"
+               data-max="10" data-target="#add-watcher-username" data-dropdown-target="#add-watcher-dropdown"
+               data-template="{title}" data-none-message="Keine entsprechenden Benutzer gefunden">
+            <input id="add-watcher-submit" type="submit" name="add" value="Hinzufügen">
+            <div id="add-watcher-dropdown" class="aui-dd-parent autocomplete"></div>
+            <div class="status hidden"></div>
+        </form>
+        <ul class="user-list">
+            <li class="loading">Laden&hellip;</li>
+            <li class="no-users hidden">Keine Seitenbeobachter</li>
+        </ul>
+    </div>
+    <div class="column space-watchers">
+        <h3>Diesen Bereich beobachten</h3>
+        <p class="description">Diese Benutzer werden benachrichtigt, wenn Inhalt in diesem Bereich geändert wird. Sie können diese Liste nicht bearbeiten.</p>
+        <ul class="user-list">
+            <li class="loading">Laden&hellip;</li>
+            <li class="no-users hidden">Keine Bereichbeobachter</li>
+        </ul>
+    </div>
+</div>
+</script>
+<script type="text/x-template" title="manage-watchers-user">
+    <li class="watch-user">
+        <img class="profile-picture confluence-userlink" src="{iconUrl}" data-username="{username}">
+        <a class="confluence-userlink" href="{url}" data-username="{username}">{fullName} <span class="username">({username})</span></a>
+        <span class="remove-watch" title="Entfernen"
+            data-username="{username}">Entfernen</span>
+    </li>
+</script>
+<script type="text/x-template" title="manage-watchers-help-link">
+    <div class="dialog-help-link">
+            <a href="http://docs.atlassian.com/confluence/docs-35/Managing+Watchers" target="_blank">Hilfe</a>
+    </div>
+</script>
+    <br class="clear">
+</div>
+  
+    </div>
+</div>
+
+<div id="footer">
+                                                <p class="license license-opensource">
+                  Kostenlose <b>Confluence Open-Source-Projektlizenz von Atlassian </b> für Apache Software Foundation. <a href="http://www.atlassian.com/c/conf/11461">Confluence heute testen</a>.<br>
+                </p>
+                        
+    
+    <div class="gliffy-footer-webpanel"><span>Auf dieser Confluence-Installation wird läuft eine kostenlose Gliffy-Lizenz - Bewerten Sie das <a href="http://www.gliffy.com/products/confluence-plugin/">Gliffy Confluence-Plug-In </a>für Ihr Wiki!</span></div>
+<ul id="poweredby">
+        <li class="noprint"><a href="http://www.atlassian.com/software/confluence" class="hover-footer-link">Atlassian Confluence</a> 3.5.17, das <a href="http://www.atlassian.com/software/confluence/tour/enterprise-wiki.jsp" class="hover-footer-link">Enterprise Wiki</a></li>
+        <li class="print-only">Gedruckt von Atlassian Confluence 3.5.17, das Enterprise Wiki.</li>        
+        <li class="noprint"> &nbsp; |&nbsp; <a href="http://jira.atlassian.com/secure/BrowseProject.jspa?id=10470" class="hover-footer-link">Fehler melden</a></li>
+        <li class="noprint"> &nbsp;|&nbsp; <a href="http://www.atlassian.com/about/connected.jsp?s_kwcid=Confluence-stayintouch" class="hover-footer-link">Atlassian News</a></li>
+    </ul>
+
+    
+
+            
+    </div></div>
+
+
+<div class="aui-popup aui-dialog" id="link-page-popup" disabled="" style="margin-top: -105px; margin-left: -300px; width: 600px; height: 210px; background-color: rgb(255, 255, 255); z-index: 3002; display: none; background-position: initial initial; background-repeat: initial initial;"><div class="dialog-components"><h2 class="dialog-title">Link zu dieser Seite</h2><ul class="dialog-page-menu" style="height: 114px; display: none;"><li class="page-menu-item selected"><button class="item-button">Link zu dieser Seite</button></li></ul><div class="dialog-page-body"><div class="dialog-panel-body" style="height: 104px;"><form id="link-page-popup-form" class="aui"><fieldset><div class="field-group"><label for="link-popup-field-link">Verknüpfung:</label><input id="link-popup-field-link" readonly="readonly" value="" '="" class="text" type="text"></div><div class="field-group"><label for="link-popup-field-tiny-link">Kurzer Link:</label><input id="link-popup-field-tiny-link" readonly="readonly" value="" '="" class="text" type="text"></div><div class="field-group"><label for="link-popup-field-wiki-markup">Wiki-Markup:</label><input id="link-popup-field-wiki-markup" readonly="readonly" value="" '="" class="text" type="text"></div></fieldset></form></div></div><div class="dialog-button-panel"><a href="https://cwiki.apache.org/confluence/display/WICKET/Listview+with+checkboxes#" class="button-panel-link button-panel-cancel-link">Schließen</a><div class="dialog-tip">Kürzel-Tipp: Das Dialogfeld kann auch durch Drücken auf <b>k</b> geöffnet werden</div></div></div></div><div id="content-hover-shadow" style="display: none;"><div class="tl"></div><div class="tr"></div><div class="l"></div><div class="r"></div><div class="bl"></div><div class="br"></div><div class="b"></div></div><div id="fancy_overlay"></div><div id="fancy_wrap"><div class="fancy_loading" id="fancy_loading"><div></div></div><div id="fancy_outer"><div id="fancy_inner"><div id="fancy_close"></div><div id="fancy_bg"><div class="fancy_bg fancy_bg_n"></div><div class="fancy_bg fancy_bg_ne"></div><div class="fancy_bg fancy_bg_e"></div><div class="fancy_bg fancy_bg_se"></div><div class="fancy_bg fancy_bg_s"></div><div class="fancy_bg fancy_bg_sw"></div><div class="fancy_bg fancy_bg_w"></div><div class="fancy_bg fancy_bg_nw"></div></div><a href="javascript:;" id="fancy_left"><span class="fancy_ico" id="fancy_left_ico"></span></a><a href="javascript:;" id="fancy_right"><span class="fancy_ico" id="fancy_right_ico"></span></a><div id="fancy_content"></div><div id="fancy_title"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="fancy_title" id="fancy_title_left"></td><td class="fancy_title" id="fancy_title_main"><div></div></td><td class="fancy_title" id="fancy_title_right"></td></tr></tbody></table></div></div></div></div><div id="filuploadShim"></div><div id="p17utg1uuq12t1687j1ldj01p4g0_html5_container" class="plupload html5" style="position: absolute; background-color: transparent; width: 1024px; height: 0px; overflow: hidden; z-index: 99999; opacity: 0; top: 570px; left: 0px; background-position: initial initial; background-repeat: initial initial;"><input id="p17utg1uuq12t1687j1ldj01p4g0_html5" style="width:100%;" type="file" accept="" multiple="multiple"></div></body></html>

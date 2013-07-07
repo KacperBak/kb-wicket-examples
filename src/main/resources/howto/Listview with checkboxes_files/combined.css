@@ -1,0 +1,10 @@
+
+
+@import url('/confluence/s/de/2176/1/3/_/styles/colors.css?spaceKey=WICKET');
+
+    /* Including stylesheet [ completeModuleKey='com.atlassian.confluence.plugins.doctheme:documentation', name='default-theme.css', location='/includes/css/default-theme.css' ] */
+            @import url('/confluence/s/de/2176/1/1.9/_/download/resources/com.atlassian.confluence.plugins.doctheme:documentation/default-theme.css');
+        /* Including stylesheet [ completeModuleKey='com.atlassian.confluence.plugins.doctheme:documentation', name='splitter.css', location='doctheme/splitter-1.5.1/splitter.css' ] */
+            @import url('/confluence/s/de/2176/1/1.9/_/download/resources/com.atlassian.confluence.plugins.doctheme:documentation/splitter.css');
+    
+@import url('/confluence/s/de/2176/1/3/_/styles/custom.css?spaceKey=WICKET');

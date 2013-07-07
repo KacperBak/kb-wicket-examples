@@ -2,21 +2,16 @@ package de.kacperbak.chapter10NestedForm;
 
 import de.kacperbak.beans.Address;
 import de.kacperbak.chapter10.CustomFeedbackPanel;
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
 import org.apache.wicket.markup.html.form.FormComponentPanel;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.model.AbstractReadOnlyModel;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.validation.IValidatable;
 import org.apache.wicket.validation.IValidator;
 import org.apache.wicket.validation.ValidationError;
 import org.apache.wicket.validation.validator.PatternValidator;
-
-import java.util.regex.Pattern;
 
 
 /**
@@ -30,20 +25,12 @@ public class NestedAddressFormPanel extends FormComponentPanel<Address> {
     private TextField<String> nrTextField;
     private TextField<Integer> checkNumberTextField;
 
-    private CompoundPropertyModel<Address> addressModel;
-
     public NestedAddressFormPanel(String id) {
         super(id);
     }
 
     public NestedAddressFormPanel(String id, IModel<Address> model) {
         super(id, model);
-        this.addressModel = new CompoundPropertyModel<Address>(model);
-    }
-
-    @Override
-    protected void onInitialize() {
-        super.onInitialize();
         add(zipTextField());
         add(cityTextField());
         add(nrTextField());
@@ -56,7 +43,6 @@ public class NestedAddressFormPanel extends FormComponentPanel<Address> {
 
     private Component zipTextField(){
         zipTextField = new TextField<Integer>("zipTextField", new Model<Integer>());
-//        zipTextField = new TextField("zipTextField", addressModel.bind("zip"));
         zipTextField.setType(Integer.class);
         zipTextField.setRequired(true);
         zipTextField.add(new ZipValidator());
@@ -65,7 +51,6 @@ public class NestedAddressFormPanel extends FormComponentPanel<Address> {
 
     private Component cityTextField(){
         cityTextField = new TextField<String>("cityTextField", new Model<String>());
-//        cityTextField = new TextField("cityTextField", addressModel.bind("city"));
         cityTextField.setType(String.class);
         cityTextField.setRequired(true);
         cityTextField.add(new CityValidator());
@@ -74,7 +59,6 @@ public class NestedAddressFormPanel extends FormComponentPanel<Address> {
 
     private Component nrTextField(){
         nrTextField = new TextField<String>("nrTextField", new Model<String>());
-//        nrTextField = new TextField("nrTextField", addressModel.bind("nr"));
         nrTextField.setType(String.class);
         nrTextField.setRequired(true);
         nrTextField.add(new PatternValidator("[0-9]*[a-zA-Z]?"));
@@ -83,7 +67,6 @@ public class NestedAddressFormPanel extends FormComponentPanel<Address> {
 
     private Component checkNumberTextField(){
         checkNumberTextField = new TextField<Integer>("checkNumberTextField", new Model<Integer>(0));
-//        checkNumberTextField = new TextField("checkNumberTextField", addressModel.bind("checkNumber"));
         checkNumberTextField.setType(Integer.class);
         checkNumberTextField.add(new CheckNumberValidator());
         return checkNumberTextField;
