@@ -20,8 +20,8 @@ public class PersonService implements Serializable {
     /**
      * consts
      */
-    private static int PERSON_AMOUNT = 0;
-    private static int ADDRESS_AMOUNT = 3;
+    private static int PERSON_AMOUNT = 1;
+    private static int ADDRESS_AMOUNT = 1;
 
     private ArrayList<Person> persons;
     private ArrayList<Address> addresses;

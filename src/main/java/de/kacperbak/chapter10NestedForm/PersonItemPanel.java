@@ -5,29 +5,31 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
 
 /**
  * User: bakka
  * Date: 08.07.13
  */
-public abstract class PersonItemPanel extends Panel {
+public class PersonItemPanel extends Panel {
 
-    private CompoundPropertyModel<Person> personModel;
+    private ComponentContext context;
 
-    public PersonItemPanel(String id, IModel<Person> model) {
+    private IModel<Person> model;
+
+    public PersonItemPanel(String id, IModel<Person> model, ComponentContext context) {
         super(id);
-        setDefaultModel(personModel = new CompoundPropertyModel<Person>(model));
+        this.model = model;
+        this.context = context;
         add(select());
-        add(new Label("name"));
-        add(new Label("age"));
-        add(new Label("pcn", personModel.bind("checkNumber")));
-        add(new Label("city", personModel.bind("address.city")));
-        add(new Label("zip", personModel.bind("address.zip")));
-        add(new Label("nr", personModel.bind("address.nr")));
-        add(new Label("acn", personModel.bind("address.checkNumber")));
+        add(new Label("name", model.getObject().getName()));
+        add(new Label("age", model.getObject().getAge()));
+        add(new Label("pcn", model.getObject().getCheckNumber()));
+        add(new Label("city", model.getObject().getAddress().getCity()));
+        add(new Label("zip", model.getObject().getAddress().getZip()));
+        add(new Label("nr", model.getObject().getAddress().getNr()));
+        add(new Label("acn", model.getObject().getAddress().getCheckNumber()));
     }
 
     private Component select(){
@@ -35,15 +37,11 @@ public abstract class PersonItemPanel extends Panel {
             @Override
             public void onClick(AjaxRequestTarget target) {
                 if(target != null){
-                    selectPerson(getModel());
-                    target.add(updateAjaxComponent());
+                    context.selectPerson(model);
+                    target.add(context.getComponentForAjaxUpdate());
                 }
             }
         };
         return link;
     }
-
-    public abstract void selectPerson(IModel<Person> personModel);
-
-    public abstract Component updateAjaxComponent();
 }

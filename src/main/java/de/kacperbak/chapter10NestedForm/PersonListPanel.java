@@ -6,6 +6,7 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 
 import java.util.List;
 
@@ -15,10 +16,11 @@ import java.util.List;
  */
 public class PersonListPanel extends GenericPanel<List<Person>> {
 
-    private IModel<Person> selectedPerson;
+    private ComponentContext context;
 
-    public PersonListPanel(String id, IModel<List<Person>> model) {
+    public PersonListPanel(String id, IModel<List<Person>> model, ComponentContext context) {
         super(id, model);
+        this.context = context;
         add(personList());
     }
 
@@ -26,23 +28,13 @@ public class PersonListPanel extends GenericPanel<List<Person>> {
         ListView<Person> personList = new ListView<Person>("personList", getModelObject()) {
             @Override
             protected void populateItem(ListItem<Person> item) {
-                item.add(personItemPanel(item));
+                item.add(personItemPanel(item.getModel()));
             }
         };
         return personList;
     }
 
-    private Component personItemPanel(ListItem<Person> item){
-        return new PersonItemPanel("personItem", item.getModel()){
-            @Override
-            public void selectPerson(IModel<Person> personModel) {
-                //To change body of implemented methods use File | Settings | File Templates.
-            }
-
-            @Override
-            public Component updateAjaxComponent() {
-                return null;  //To change body of implemented methods use File | Settings | File Templates.
-            }
-        };
+    private Component personItemPanel(IModel<Person> model){
+        return new PersonItemPanel("personItem", model, context);
     }
 }

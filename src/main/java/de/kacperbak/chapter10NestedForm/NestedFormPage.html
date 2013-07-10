@@ -6,8 +6,11 @@
 </head>
 <body>
     <h1>NestedFormPage</h1>
+    <h3>PersonList</h3>
+    <div wicket:id="personList"></div>
+    <h3>NestedPersonForm</h3>
     <form wicket:id="nestedForm">
-        <table>
+        <table wicket:id="container">
             <form wicket:id="personFormPanel"/>
             <tr>
                 <td><input type="submit" value="create"/></td>

@@ -20,17 +20,7 @@ public class PersonItemPanelTest extends AbstractWicketTest{
     public void testRender(){
         Address address = new Address("city", "46a", 80992, 1000);
         Person person = new Person("kacper", 30, address, 2000);
-        PersonItemPanel panel = new PersonItemPanel(PANEL, new Model<Person>(person)){
-            @Override
-            public void selectPerson(IModel<Person> personModel) {
-                //To change body of implemented methods use File | Settings | File Templates.
-            }
-
-            @Override
-            public Component updateAjaxComponent() {
-                return null;  //To change body of implemented methods use File | Settings | File Templates.
-            }
-        };
+        PersonItemPanel panel = new PersonItemPanel(PANEL, new Model<Person>(person), null);
         tester.startComponentInPage(panel);
         tester.assertComponent(PANEL, PersonItemPanel.class);
     }
