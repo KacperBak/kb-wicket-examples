@@ -25,10 +25,6 @@ public class NestedAddressFormPanel extends FormComponentPanel<Address> {
     private TextField<String> nrTextField;
     private TextField<Integer> checkNumberTextField;
 
-    public NestedAddressFormPanel(String id) {
-        super(id);
-    }
-
     public NestedAddressFormPanel(String id, IModel<Address> model) {
         super(id, model);
         add(zipTextField());
@@ -122,6 +118,12 @@ public class NestedAddressFormPanel extends FormComponentPanel<Address> {
     }
 
     /**
+     * IMPORTANT: Enter this method after form validation has succeeded!!!
+     * REMEMBER:
+     * 1. validation
+     * 2. model update <-- THATs the point
+     * 3. callbacks: onSubmit, onError
+     *
      * IMPORTANT this method has to be overriden if FormComponentPanel.class is used
      * to extract the values
      */
@@ -135,7 +137,15 @@ public class NestedAddressFormPanel extends FormComponentPanel<Address> {
         int check = checkNumberTextField.getConvertedInput();
 
         //set converted input to model of component
-        //setModelObject
         setConvertedInput(new Address(city,number,zip,check));
+    }
+
+    public void updateFormPanel(IModel<Address> model){
+        setModel(model);
+        Address address = model.getObject();
+        cityTextField.setModel(new Model<String>(address.getCity()));
+        zipTextField.setModel(new Model<Integer>(address.getZip()));
+        nrTextField.setModel(new Model<String>(address.getNr()));
+        checkNumberTextField.setModel(new Model<Integer>(address.getCheckNumber()));
     }
 }

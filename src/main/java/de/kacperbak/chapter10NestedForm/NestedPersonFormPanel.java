@@ -76,21 +76,15 @@ public class NestedPersonFormPanel extends FormComponentPanel<Person> {
         int age = ageTextField.getConvertedInput();
         int check = checkNumberTextField.getConvertedInput();
         Address address = addressFormPanel.getConvertedInput();
-
         setConvertedInput(new Person(name, age, address, check));
     }
 
     public void updateFormPanel(IModel<Person> model){
-//        String name = nameTextField.getModelObject();
-//        int age = ageTextField.getModelObject();
-//        int check = checkNumberTextField.getModelObject();
-//        //TODO update panel
-//        Address address = addressFormPanel.getModelObject();
-//        setModel(new Model<Person>(new Person(name, age, address, check)));
         setModel(model);
         nameTextField.setModel(new Model<String>(model.getObject().getName()));
         ageTextField.setModel(new Model<Integer>(model.getObject().getAge()));
         checkNumberTextField.setModel(new Model<Integer>(model.getObject().getCheckNumber()));
+        addressFormPanel.updateFormPanel(new Model<Address>(model.getObject().getAddress()));
     }
 
 }

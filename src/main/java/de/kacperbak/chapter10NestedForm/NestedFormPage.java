@@ -26,7 +26,7 @@ public class NestedFormPage extends BasePage implements ComponentContext {
     private PersonListPanel personListPanel;
 
     public NestedFormPage() {
-        add(nestedForm());
+        add(formContainer());
         add(personList());
     }
 
@@ -35,16 +35,16 @@ public class NestedFormPage extends BasePage implements ComponentContext {
             @Override
             protected void onSubmit() {
                 super.onSubmit();
-                service.addPerson(personFormPanel.getModelObject());
+//                service.addPerson(personFormPanel.getModelObject());
             }
         };
-        form.add(container());
+        form.add(personFormPanel());
         return form;
     }
 
-    private Component container(){
+    private Component formContainer(){
         container = new WebMarkupContainer("container");
-        container.add(personFormPanel());
+        container.add(nestedForm());
         container.setOutputMarkupPlaceholderTag(true);
         return container;
     }

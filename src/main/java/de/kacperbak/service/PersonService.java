@@ -20,7 +20,7 @@ public class PersonService implements Serializable {
     /**
      * consts
      */
-    private static int PERSON_AMOUNT = 1;
+    private static int PERSON_AMOUNT = 2;
     private static int ADDRESS_AMOUNT = 1;
 
     private ArrayList<Person> persons;
@@ -48,7 +48,7 @@ public class PersonService implements Serializable {
     }
 
     private Person createPerson(int number){
-        return new Person("Kacper", 30, createDefaultAddress(), number);
+        return new Person("Kacper", 30 + number, createDefaultAddress(), number);
     }
 
     private Address createDefaultAddress(){

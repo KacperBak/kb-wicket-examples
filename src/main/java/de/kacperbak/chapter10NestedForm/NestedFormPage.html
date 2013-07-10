@@ -9,15 +9,17 @@
     <h3>PersonList</h3>
     <div wicket:id="personList"></div>
     <h3>NestedPersonForm</h3>
-    <form wicket:id="nestedForm">
-        <table wicket:id="container">
-            <form wicket:id="personFormPanel"/>
-            <tr>
-                <td><input type="submit" value="create"/></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-    </form>
+    <div wicket:id="container">
+        <form wicket:id="nestedForm">
+            <table>
+                <form wicket:id="personFormPanel"/>
+                <tr>
+                    <td><input type="submit" value="update"/></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 </html>
