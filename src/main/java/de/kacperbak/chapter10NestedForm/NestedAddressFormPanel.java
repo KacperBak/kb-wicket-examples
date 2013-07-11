@@ -148,4 +148,14 @@ public class NestedAddressFormPanel extends FormComponentPanel<Address> {
         nrTextField.setModel(new Model<String>(address.getNr()));
         checkNumberTextField.setModel(new Model<Integer>(address.getCheckNumber()));
     }
+
+    public void clearFormValues(){
+        setModel(new Model<Address>());
+        cityTextField.setModel(new Model<String>());
+        zipTextField.setModel(new Model<Integer>());
+        nrTextField.setModel(new Model<String>());
+        checkNumberTextField.setModel(new Model<Integer>());
+    }
+
+
 }

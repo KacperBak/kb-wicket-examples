@@ -81,10 +81,19 @@ public class NestedPersonFormPanel extends FormComponentPanel<Person> {
 
     public void updateFormPanel(IModel<Person> model){
         setModel(model);
-        nameTextField.setModel(new Model<String>(model.getObject().getName()));
-        ageTextField.setModel(new Model<Integer>(model.getObject().getAge()));
-        checkNumberTextField.setModel(new Model<Integer>(model.getObject().getCheckNumber()));
-        addressFormPanel.updateFormPanel(new Model<Address>(model.getObject().getAddress()));
+        Person person = model.getObject();
+        nameTextField.setModel(new Model<String>(person.getName()));
+        ageTextField.setModel(new Model<Integer>(person.getAge()));
+        checkNumberTextField.setModel(new Model<Integer>(person.getCheckNumber()));
+        addressFormPanel.updateFormPanel(new Model<Address>(person.getAddress()));
+    }
+
+    public void clearFormValues(){
+        setModel(new Model<Person>());
+        nameTextField.setModel(new Model<String>());
+        ageTextField.setModel(new Model<Integer>());
+        checkNumberTextField.setModel(new Model<Integer>());
+        addressFormPanel.clearFormValues();
     }
 
 }
