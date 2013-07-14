@@ -95,4 +95,12 @@ public class PersonService implements Serializable {
     public ArrayList<Address> getAddresses() {
         return addresses;
     }
+
+    public boolean removePerson(Person person){
+        return persons.remove(person);
+    }
+
+    public boolean removeAddress(Address address){
+        return addresses.remove(address);
+    }
 }

@@ -9,8 +9,6 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import java.util.List;
-
 /**
  * User: bakka
  * Date: 04.07.13
@@ -25,6 +23,8 @@ public class NestedFormPage extends BasePage implements ComponentContext {
     private PersonListPanel personListPanel;
     private Button updatePersonButton;
     private Button cancelButton;
+    private Button deleteButton;
+    private Button addButton;
 
 
     public NestedFormPage() {
@@ -40,7 +40,9 @@ public class NestedFormPage extends BasePage implements ComponentContext {
             }
         };
         form.add(personFormPanel());
-        form.add(updatePersonButton());
+        form.add(addButton());
+        form.add(deleteButton());
+        form.add(updateButton());
         form.add(cancelButton());
         return form;
     }
@@ -49,8 +51,8 @@ public class NestedFormPage extends BasePage implements ComponentContext {
      * To update a person the form has to be submitted
      * @return
      */
-    private Component updatePersonButton(){
-        return updatePersonButton = new Button("updatePersonButton"){
+    private Component updateButton(){
+        return updatePersonButton = new Button("updateButton"){
             @Override
             public void onSubmit() {
                 super.onSubmit();
@@ -73,6 +75,30 @@ public class NestedFormPage extends BasePage implements ComponentContext {
         //Reset default form processing: validation and model update
         cancelButton.setDefaultFormProcessing(false);
         return cancelButton;
+    }
+
+    private Component deleteButton(){
+        deleteButton = new Button("deleteButton"){
+            @Override
+            public void onSubmit() {
+                super.onSubmit();
+                service.removePerson(personFormPanel.getModelObject());
+                personFormPanel.clearFormValues();
+            }
+        };
+        deleteButton.setDefaultFormProcessing(false);
+        return deleteButton;
+    }
+
+    private Component addButton(){
+        addButton = new Button("addButton"){
+            @Override
+            public void onSubmit() {
+                super.onSubmit();
+                service.addPerson(personFormPanel.getModelObject());
+            }
+        };
+        return addButton;
     }
 
     private Component formContainer(){
