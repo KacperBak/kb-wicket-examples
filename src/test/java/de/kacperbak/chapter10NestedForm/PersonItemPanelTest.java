@@ -3,8 +3,7 @@ package de.kacperbak.chapter10NestedForm;
 import de.kacperbak.AbstractWicketTest;
 import de.kacperbak.beans.Address;
 import de.kacperbak.beans.Person;
-import org.apache.wicket.Component;
-import org.apache.wicket.model.IModel;
+import de.kacperbak.chapter10formcomponentpanel.PersonItemPanel;
 import org.apache.wicket.model.Model;
 import org.junit.Test;
 

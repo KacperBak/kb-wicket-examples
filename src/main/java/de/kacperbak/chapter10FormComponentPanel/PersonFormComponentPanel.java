@@ -1,4 +1,4 @@
-package de.kacperbak.chapter10NestedForm;
+package de.kacperbak.chapter10formcomponentpanel;
 
 import de.kacperbak.beans.Address;
 import de.kacperbak.beans.Person;
@@ -16,14 +16,14 @@ import org.apache.wicket.model.Model;
  * User: bakka
  * Date: 07.07.13
  */
-public class NestedPersonFormPanel extends FormComponentPanel<Person> {
+public class PersonFormComponentPanel extends FormComponentPanel<Person> {
 
     private TextField<String> nameTextField;
     private TextField<Integer> ageTextField;
     private TextField<Integer> checkNumberTextField;
-    private NestedAddressFormPanel addressFormPanel;
+    private AddressFormComponentPanel addressFormPanel;
 
-    public NestedPersonFormPanel(String id, IModel<Person> model) {
+    public PersonFormComponentPanel(String id, IModel<Person> model) {
         super(id, model);
         add(nameTextField());
         add(ageTextField());
@@ -67,7 +67,7 @@ public class NestedPersonFormPanel extends FormComponentPanel<Person> {
     }
 
     private Component addressFormPanel(){
-        return addressFormPanel = new NestedAddressFormPanel("addressFormPanel", new Model<Address>());
+        return addressFormPanel = new AddressFormComponentPanel("addressFormPanel", new Model<Address>());
     }
 
     @Override

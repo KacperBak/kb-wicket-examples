@@ -1,4 +1,4 @@
-package de.kacperbak.chapter10NestedForm;
+package de.kacperbak.chapter10formcomponentpanel;
 
 import de.kacperbak.beans.Address;
 import de.kacperbak.chapter10.CustomFeedbackPanel;
@@ -18,14 +18,14 @@ import org.apache.wicket.validation.validator.PatternValidator;
  * User: bakka
  * Date: 04.07.13
  */
-public class NestedAddressFormPanel extends FormComponentPanel<Address> {
+public class AddressFormComponentPanel extends FormComponentPanel<Address> {
 
     private TextField<Integer> zipTextField;
     private TextField<String> cityTextField;
     private TextField<String> nrTextField;
     private TextField<Integer> checkNumberTextField;
 
-    public NestedAddressFormPanel(String id, IModel<Address> model) {
+    public AddressFormComponentPanel(String id, IModel<Address> model) {
         super(id, model);
         add(zipTextField());
         add(cityTextField());

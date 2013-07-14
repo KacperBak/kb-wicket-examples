@@ -1,4 +1,4 @@
-package de.kacperbak.chapter10SubmitLink;
+package de.kacperbak.chapter10submitlink;
 
 import de.kacperbak.pages.BasePage;
 import org.apache.wicket.Component;
@@ -33,7 +33,13 @@ public class TwoFormsTwoSubmits extends BasePage {
     }
 
     private Component firstForm(){
-        firstNameForm = new Form("firstForm");
+        firstNameForm = new Form("firstForm"){
+            @Override
+            protected void onSubmit() {
+                super.onSubmit();
+                System.out.println("firstForm submitted:" + firstNameTextField.getValue());
+            }
+        };
         firstNameForm.add(firstNameTextField = new TextField("firstNameTextField", firstName = new Model<String>("")));
         firstNameForm.add(firstNameFeedback());
         firstNameTextField.setRequired(true);
@@ -41,7 +47,13 @@ public class TwoFormsTwoSubmits extends BasePage {
     }
 
     private Component secondForm(){
-        secondNameForm = new Form("secondForm");
+        secondNameForm = new Form("secondForm"){
+            @Override
+            protected void onSubmit() {
+                super.onSubmit();
+                System.out.println("secondForm submitted:" + secondNameTextField.getValue());
+            }
+        };
         secondNameForm.add(secondNameTextField = new TextField("secondNameTextField", secondName = new Model<String>()));
         secondNameForm.add(secondNameFeedback());
         secondNameTextField.setRequired(true);

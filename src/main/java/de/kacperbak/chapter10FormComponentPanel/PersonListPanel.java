@@ -1,4 +1,4 @@
-package de.kacperbak.chapter10NestedForm;
+package de.kacperbak.chapter10formcomponentpanel;
 
 import de.kacperbak.beans.Person;
 import org.apache.wicket.Component;
@@ -6,7 +6,6 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 
 import java.util.List;
 

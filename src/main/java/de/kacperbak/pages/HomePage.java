@@ -1,8 +1,8 @@
 package de.kacperbak.pages;
 
 import de.kacperbak.chapter10.ValidatorExample;
-import de.kacperbak.chapter10NestedForm.NestedFormPage;
-import de.kacperbak.chapter10SubmitLink.TwoFormsTwoSubmits;
+import de.kacperbak.chapter10formcomponentpanel.FormComponentPage;
+import de.kacperbak.chapter10submitlink.TwoFormsTwoSubmits;
 import de.kacperbak.chapter11.AddressListViewPage;
 import de.kacperbak.chapter4.ControlOverHtmlExamples;
 import de.kacperbak.chapter4.EnclosureExample;
@@ -35,7 +35,7 @@ public class HomePage extends WebPage {
         add(addressListViewExample());
         add(validatorExample());
         add(twoFormsTwoSubmitsExample());
-        add(nestedFormPage());
+        add(formComponentPanelExample());
     }
 
     private Component chapter4PageLink(){
@@ -150,11 +150,11 @@ public class HomePage extends WebPage {
         };
     }
 
-    private Component nestedFormPage(){
-        return new Link("nestedFormPage") {
+    private Component formComponentPanelExample(){
+        return new Link("formComponentPanelExample") {
             @Override
             public void onClick() {
-                setResponsePage(NestedFormPage.class);
+                setResponsePage(FormComponentPage.class);
             }
         };
     }

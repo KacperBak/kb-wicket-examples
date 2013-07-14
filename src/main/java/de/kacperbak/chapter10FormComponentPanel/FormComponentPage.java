@@ -1,4 +1,4 @@
-package de.kacperbak.chapter10NestedForm;
+package de.kacperbak.chapter10formcomponentpanel;
 
 import de.kacperbak.beans.Person;
 import de.kacperbak.pages.BasePage;
@@ -13,13 +13,13 @@ import org.apache.wicket.model.Model;
  * User: bakka
  * Date: 04.07.13
  */
-public class NestedFormPage extends BasePage implements ComponentContext {
+public class FormComponentPage extends BasePage implements ComponentContext {
 
     /**
      * The container wraps the personFormPanel so it can be refreshed via ajax!
      */
     private WebMarkupContainer container;
-    private NestedPersonFormPanel personFormPanel;
+    private PersonFormComponentPanel personFormPanel;
     private PersonListPanel personListPanel;
     private Button updatePersonButton;
     private Button cancelButton;
@@ -27,7 +27,7 @@ public class NestedFormPage extends BasePage implements ComponentContext {
     private Button addButton;
 
 
-    public NestedFormPage() {
+    public FormComponentPage() {
         add(formContainer());
         add(personList());
     }
@@ -109,7 +109,7 @@ public class NestedFormPage extends BasePage implements ComponentContext {
     }
 
     private Component personFormPanel(){
-        personFormPanel = new NestedPersonFormPanel("personFormPanel", new Model<Person>());
+        personFormPanel = new PersonFormComponentPanel("personFormPanel", new Model<Person>());
         return personFormPanel;
     }
 

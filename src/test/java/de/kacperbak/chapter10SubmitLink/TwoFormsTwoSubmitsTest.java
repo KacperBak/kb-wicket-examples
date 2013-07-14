@@ -1,4 +1,4 @@
-package de.kacperbak.chapter10SubmitLink;
+package de.kacperbak.chapter10submitlink;
 
 import de.kacperbak.AbstractWicketTest;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package de.kacperbak.chapter10NestedForm;
+package de.kacperbak.chapter10formcomponentpanel;
 
 import de.kacperbak.beans.Person;
 import org.apache.wicket.Component;
