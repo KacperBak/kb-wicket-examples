@@ -8,7 +8,7 @@ import org.apache.wicket.model.IModel;
  * User: bakka
  * Date: 09.07.13
  */
-public interface ComponentContext {
+public interface PersonListContext {
 
     public void selectPerson(IModel<Person> personModel);
 

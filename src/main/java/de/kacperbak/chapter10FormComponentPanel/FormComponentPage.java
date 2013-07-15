@@ -13,7 +13,7 @@ import org.apache.wicket.model.Model;
  * User: bakka
  * Date: 04.07.13
  */
-public class FormComponentPage extends BasePage implements ComponentContext {
+public class FormComponentPage extends BasePage implements PersonListContext {
 
     /**
      * The container wraps the personFormPanel so it can be refreshed via ajax!

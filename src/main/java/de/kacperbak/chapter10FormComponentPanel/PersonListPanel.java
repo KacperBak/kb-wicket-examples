@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class PersonListPanel extends GenericPanel<List<Person>> {
 
-    private ComponentContext context;
+    private PersonListContext context;
 
-    public PersonListPanel(String id, IModel<List<Person>> model, ComponentContext context) {
+    public PersonListPanel(String id, IModel<List<Person>> model, PersonListContext context) {
         super(id, model);
         this.context = context;
         add(personList());

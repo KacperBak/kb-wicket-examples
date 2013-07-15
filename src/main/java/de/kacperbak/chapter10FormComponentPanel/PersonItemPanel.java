@@ -14,11 +14,11 @@ import org.apache.wicket.model.IModel;
  */
 public class PersonItemPanel extends Panel {
 
-    private ComponentContext context;
+    private PersonListContext context;
 
     private IModel<Person> model;
 
-    public PersonItemPanel(String id, IModel<Person> model, ComponentContext context) {
+    public PersonItemPanel(String id, IModel<Person> model, PersonListContext context) {
         super(id);
         this.model = model;
         this.context = context;
