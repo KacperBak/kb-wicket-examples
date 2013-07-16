@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <table>
+        <form wicket:id="form">
+            <tr>
+                <td>name:</td>
+                <td><input type="text" wicket:id="nameTextField"/></td>
+                <td><span wicket:id="nameFeedback"/></td>
+            </tr>
+            <tr>
+                <td>age:</td>
+                <td><input type="text" wicket:id="ageTextField"/></td>
+                <td><span wicket:id="ageFeedback"/></td>
+            </tr>
+            <tr>
+                <td>person_cn:</td>
+                <td><input type="text" wicket:id="checkNumberTextField"/></td>
+                <td><span wicket:id="checkNumberFeedback"/></td>
+            </tr>
+            <wicket:container wicket:id="addressFormPanel"/>
+            <tr>
+                <td>
+                    <input type="submit" value="submit"/>
+                </td>
+            </tr>
+        </form>
+    </table>
+</wicket:panel>
+</body>
+</html>

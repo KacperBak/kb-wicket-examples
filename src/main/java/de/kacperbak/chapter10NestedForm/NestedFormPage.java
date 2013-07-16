@@ -17,7 +17,7 @@ import org.apache.wicket.model.Model;
 public class NestedFormPage extends BasePage implements PersonListContext {
 
     private WebMarkupContainer container;
-    private NestedPersonForm personForm;
+    private PersonFormPanel personFormPanel;
     private IModel<Person> currentSelectedPerson;
 
     public NestedFormPage() {
@@ -30,20 +30,14 @@ public class NestedFormPage extends BasePage implements PersonListContext {
         return new PersonListPanel("personsList", new Model(service.getPersons()), this);
     }
 
-    private Component personForm(){
-        personForm = new NestedPersonForm("personForm", new CompoundPropertyModel<Person>(currentSelectedPerson)){
-            @Override
-            protected void onSubmit() {
-                super.onSubmit();
-            }
-        };
-        personForm.setOutputMarkupPlaceholderTag(true);
-        return personForm;
+    private Component personFormPanel(){
+        personFormPanel = new PersonFormPanel("personFormPanel", new CompoundPropertyModel<Person>(currentSelectedPerson));
+        return personFormPanel;
     }
 
     private Component container(){
         container = new WebMarkupContainer("container");
-        container.add(personForm());
+        container.add(personFormPanel());
         container.setOutputMarkupId(true);
         return container;
     }

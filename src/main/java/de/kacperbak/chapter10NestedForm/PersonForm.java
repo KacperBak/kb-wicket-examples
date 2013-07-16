@@ -13,13 +13,13 @@ import org.apache.wicket.model.*;
  * User: bakka
  * Date: 15.07.13
  */
-public class NestedPersonForm extends Form<Person> {
+public class PersonForm extends Form<Person> {
 
     private TextField<String> nameTextField;
     private TextField<Integer> ageTextField;
     private TextField<Integer> checkNumberTextField;
 
-    public NestedPersonForm(String id, IModel<Person> model) {
+    public PersonForm(String id, IModel<Person> model) {
         super(id, model);
         add(nameTextField());
         add(ageTextField());
