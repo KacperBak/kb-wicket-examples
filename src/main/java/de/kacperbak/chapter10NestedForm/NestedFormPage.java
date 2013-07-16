@@ -21,7 +21,7 @@ public class NestedFormPage extends BasePage implements PersonListContext {
     private IModel<Person> currentSelectedPerson;
 
     public NestedFormPage() {
-        this.currentSelectedPerson = new Model<Person>(new Person("",0,null,0));
+        this.currentSelectedPerson = new Model<Person>();
         add(personsList());
         add(container());
     }
@@ -55,6 +55,6 @@ public class NestedFormPage extends BasePage implements PersonListContext {
 
     @Override
     public void selectPerson(IModel<Person> personModel) {
-        currentSelectedPerson = personModel;
+        currentSelectedPerson.setObject(personModel.getObject());
     }
 }

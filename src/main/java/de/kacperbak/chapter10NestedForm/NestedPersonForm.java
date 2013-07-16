@@ -30,7 +30,7 @@ public class NestedPersonForm extends Form<Person> {
     }
 
     private Component nameTextField(){
-        nameTextField = new TextField<String>("nameTextField", new PropertyModel<String>(getModel(), "person"));
+        nameTextField = new TextField<String>("nameTextField", new PropertyModel<String>(getModel(), "name"));
         nameTextField.setType(String.class);
         nameTextField.setRequired(true);
         return nameTextField;
