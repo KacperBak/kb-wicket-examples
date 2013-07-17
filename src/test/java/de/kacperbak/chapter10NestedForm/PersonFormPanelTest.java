@@ -16,7 +16,7 @@ public class PersonFormPanelTest extends AbstractWicketTest{
     @Test
     public void testRender() throws Exception {
         IModel<Person> personIModel = new Model<Person>(new Person("", 0, new Address("", "", 0, 0), 0));
-        tester.startComponentInPage(new PersonFormPanel("panel", personIModel));
+        tester.startComponentInPage(new PersonFormPanel("panel", personIModel, null));
         tester.assertComponent("panel", PersonFormPanel.class);
     }
 }

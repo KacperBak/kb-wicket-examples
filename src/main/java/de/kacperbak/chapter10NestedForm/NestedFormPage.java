@@ -4,6 +4,7 @@ import de.kacperbak.beans.Person;
 import de.kacperbak.chapter10formcomponentpanel.PersonListContext;
 import de.kacperbak.chapter10formcomponentpanel.PersonListPanel;
 import de.kacperbak.pages.BasePage;
+import de.kacperbak.service.PersonService;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -14,7 +15,7 @@ import org.apache.wicket.model.Model;
  * User: bakka
  * Date: 14.07.13
  */
-public class NestedFormPage extends BasePage implements PersonListContext {
+public class NestedFormPage extends BasePage implements PersonListContext, PersonFormContext {
 
     private WebMarkupContainer container;
     private PersonFormPanel personFormPanel;
@@ -31,7 +32,7 @@ public class NestedFormPage extends BasePage implements PersonListContext {
     }
 
     private Component personFormPanel(){
-        personFormPanel = new PersonFormPanel("personFormPanel", new CompoundPropertyModel<Person>(currentSelectedPerson));
+        personFormPanel = new PersonFormPanel("personFormPanel", new CompoundPropertyModel<Person>(currentSelectedPerson), this);
         return personFormPanel;
     }
 
@@ -50,5 +51,10 @@ public class NestedFormPage extends BasePage implements PersonListContext {
     @Override
     public void selectPerson(IModel<Person> personModel) {
         currentSelectedPerson.setObject(personModel.getObject());
+    }
+
+    @Override
+    public PersonService getService() {
+        return service;
     }
 }
