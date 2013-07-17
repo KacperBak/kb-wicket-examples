@@ -27,23 +27,23 @@ public class PersonService implements Serializable {
     private ArrayList<Address> addresses;
 
     private PersonService() {
-        this.persons = createDefaultPersons();
         this.addresses = createDefaultAddresses();
+        this.persons = createDefaultPersons();
     }
 
     private ArrayList<Person> createDefaultPersons(){
         ArrayList<Person> result = new ArrayList<Person>();
-        for(int i=0; i < PERSON_AMOUNT; i++){
-            result.add(createPerson(i));
-        }
+        result.add(new Person("Kacper", 30, addresses.get(0), 1));
+        result.add(new Person("Max", 25, addresses.get(1), 2));
+        result.add(new Person("Markus", 50, addresses.get(2), 3));
         return result;
     }
 
     private ArrayList<Address> createDefaultAddresses(){
         ArrayList<Address> result = new ArrayList<Address>();
         result.add(new Address("Augsburg", "46a", 86163, 100));
-        result.add(new Address("Kempten", "46b", 87443, 101));
-        result.add(new Address("Memmingen", "46c", 87700, 102));
+        result.add(new Address("Kempten", "2", 87443, 101));
+        result.add(new Address("Memmingen", "30", 87700, 102));
         return result;
     }
 
