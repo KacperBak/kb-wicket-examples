@@ -27,6 +27,6 @@ public class PropertyModelExample extends WebPage{
         add(new Label("addressCity", new PropertyModel<Person>(person, "address.city")));
 
         //use Address to retrieve the Address data
-        add(new Label("addressNr", new PropertyModel<Address>(person.getAddress(), "nr")));
+        add(new Label("addressNr", new PropertyModel<Address>(person.getMainAddress(), "nr")));
     }
 }

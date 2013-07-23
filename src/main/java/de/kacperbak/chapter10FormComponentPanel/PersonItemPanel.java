@@ -26,10 +26,10 @@ public class PersonItemPanel extends Panel {
         add(new Label("name", model.getObject().getName()));
         add(new Label("age", model.getObject().getAge()));
         add(new Label("pcn", model.getObject().getCheckNumber()));
-        add(new Label("city", model.getObject().getAddress().getCity()));
-        add(new Label("zip", model.getObject().getAddress().getZip()));
-        add(new Label("nr", model.getObject().getAddress().getNr()));
-        add(new Label("acn", model.getObject().getAddress().getCheckNumber()));
+        add(new Label("city", model.getObject().getMainAddress().getCity()));
+        add(new Label("zip", model.getObject().getMainAddress().getZip()));
+        add(new Label("nr", model.getObject().getMainAddress().getNr()));
+        add(new Label("acn", model.getObject().getMainAddress().getCheckNumber()));
     }
 
     private Component select(){

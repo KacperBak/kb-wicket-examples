@@ -35,7 +35,7 @@ public class PersonFormPanel extends GenericPanel<Person> {
     }
 
     private Component addressFormPanel(){
-        return new AddressFormPanel("addressFormPanel", new PropertyModel<Address>(getModel(), "address"));
+        return new AddressFormPanel("addressFormPanel", new PropertyModel<Address>(getModel(), "mainAddress"));
     }
 
     private Component update(){

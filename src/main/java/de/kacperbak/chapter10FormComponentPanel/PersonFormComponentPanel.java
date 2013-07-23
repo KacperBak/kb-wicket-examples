@@ -85,7 +85,7 @@ public class PersonFormComponentPanel extends FormComponentPanel<Person> {
         nameTextField.setModel(new Model<String>(person.getName()));
         ageTextField.setModel(new Model<Integer>(person.getAge()));
         checkNumberTextField.setModel(new Model<Integer>(person.getCheckNumber()));
-        addressFormPanel.updateFormPanel(new Model<Address>(person.getAddress()));
+        addressFormPanel.updateFormPanel(new Model<Address>(person.getMainAddress()));
     }
 
     public void clearFormValues(){

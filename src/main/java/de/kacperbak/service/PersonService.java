@@ -5,6 +5,8 @@ import de.kacperbak.beans.Person;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * User: bakka
@@ -25,10 +27,12 @@ public class PersonService implements Serializable {
 
     private ArrayList<Person> persons;
     private ArrayList<Address> addresses;
+    private List<Person> personsWithAddresses;
 
     private PersonService() {
         this.addresses = createDefaultAddresses();
         this.persons = createDefaultPersons();
+        this.personsWithAddresses = createPersonsWithAddresses();
     }
 
     private ArrayList<Person> createDefaultPersons(){
@@ -44,6 +48,20 @@ public class PersonService implements Serializable {
         result.add(new Address("Augsburg", "46a", 86163, 100));
         result.add(new Address("Kempten", "2", 87443, 101));
         result.add(new Address("Memmingen", "30", 87700, 102));
+        return result;
+    }
+
+    private List<Person> createPersonsWithAddresses(){
+        List<Person> result = new ArrayList<Person>();
+
+        Address augsburg = new Address("Augsburg", "46a", 86163, 200);
+        Address kempten = new Address("Kempten", "36", 87435, 201);
+        Address memmingen = new Address("Memmingen", "38", 87700, 202);
+        Address murnau = new Address("Murnau", "10", 82418, 203);
+
+        result.add(new Person("Kacper", 30, 100, augsburg, Arrays.asList(memmingen, kempten, augsburg)));
+        result.add(new Person("Micha", 28, 101, augsburg, Arrays.asList(kempten, augsburg)));
+        result.add(new Person("Max", 26, 102, kempten, Arrays.asList(murnau, kempten)));
         return result;
     }
 
@@ -102,5 +120,13 @@ public class PersonService implements Serializable {
 
     public boolean removeAddress(Address address){
         return addresses.remove(address);
+    }
+
+    public List<Person> getPersonsWithAddresses() {
+        return personsWithAddresses;
+    }
+
+    public void setPersonsWithAddresses(List<Person> personsWithAddresses) {
+        this.personsWithAddresses = personsWithAddresses;
     }
 }

@@ -1,6 +1,7 @@
 package de.kacperbak.beans;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * User: bakka
@@ -10,15 +11,24 @@ public class Person implements Serializable {
 
     private String name;
     private int age;
-    private Address address;
+    private Address mainAddress;
     private int checkNumber;
+    private List<Address> addresses;
 
 
-    public Person(String name, int age, Address address,int checkNumber) {
+    public Person(String name, int age, Address mainAddress,int checkNumber) {
         this.name = name;
         this.age = age;
-        this.address = address;
+        this.mainAddress = mainAddress;
         this.checkNumber = checkNumber;
+    }
+
+    public Person(String name, int age, int checkNumber,Address mainAddress, List<Address> addresses) {
+        this.addresses = addresses;
+        this.age = age;
+        this.checkNumber = checkNumber;
+        this.mainAddress = mainAddress;
+        this.name = name;
     }
 
     public String getName() {
@@ -45,20 +55,29 @@ public class Person implements Serializable {
         this.checkNumber = checkNumber;
     }
 
-    public Address getAddress() {
-        return address;
+    public Address getMainAddress() {
+        return mainAddress;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setMainAddress(Address mainAddress) {
+        this.mainAddress = mainAddress;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 
     @Override
     public String toString() {
         return "Person{" +
-                "address=" + address +
+                "addresses=" + addresses +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", mainAddress=" + mainAddress +
                 ", checkNumber=" + checkNumber +
                 '}';
     }
