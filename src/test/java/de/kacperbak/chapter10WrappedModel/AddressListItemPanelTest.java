@@ -2,6 +2,7 @@ package de.kacperbak.chapter10WrappedModel;
 
 import de.kacperbak.AbstractWicketTest;
 import de.kacperbak.beans.Address;
+import de.kacperbak.wrappedbeans.WrappedAddress;
 import org.apache.wicket.model.Model;
 import org.junit.Test;
 
@@ -16,7 +17,8 @@ public class AddressListItemPanelTest extends AbstractWicketTest{
     @Test
     public void testRender(){
         Address address = new Address("test", "test", 0, 0);
-        tester.startComponentInPage(new AddressListItemPanel(PANEL, new Model<Address>(address)));
+        WrappedAddress wrappedAddress = new WrappedAddress(address);
+        tester.startComponentInPage(new AddressListItemPanel(PANEL, new Model<WrappedAddress>(wrappedAddress)));
         tester.assertComponent(PANEL, AddressListItemPanel.class);
     }
 }

@@ -2,6 +2,8 @@ package de.kacperbak.service;
 
 import de.kacperbak.beans.Address;
 import de.kacperbak.beans.Person;
+import de.kacperbak.wrappedbeans.WrappedPerson;
+import de.kacperbak.wrappedbeans.Wrapper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -124,6 +126,14 @@ public class PersonService implements Serializable {
 
     public List<Person> getPersonsWithAddresses() {
         return personsWithAddresses;
+    }
+
+    public List<WrappedPerson> getWrappedPersonsWithAddress(){
+        ArrayList<WrappedPerson> result = new ArrayList<WrappedPerson>();
+        for(Person person : personsWithAddresses){
+            result.add(Wrapper.wrapPerson(person));
+        }
+        return result;
     }
 
     public void setPersonsWithAddresses(List<Person> personsWithAddresses) {

@@ -1,12 +1,13 @@
 package de.kacperbak.chapter10WrappedModel;
 
-import de.kacperbak.beans.Address;
 import de.kacperbak.beans.Person;
 import de.kacperbak.chapter10formcomponentpanel.PersonListContext;
 import de.kacperbak.chapter10formcomponentpanel.PersonListPanel;
 import de.kacperbak.pages.BasePage;
+import de.kacperbak.wrappedbeans.WrappedAddress;
+import de.kacperbak.wrappedbeans.WrappedPerson;
+import de.kacperbak.wrappedbeans.Wrapper;
 import org.apache.wicket.Component;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
@@ -17,36 +18,45 @@ import java.util.List;
  * User: bakka
  * Date: 22.07.13
  */
-public class WrappedModelPage extends BasePage implements PersonListContext{
+public class WrappedModelPage extends BasePage implements WrappedPersonContext, AddressListFormContext{
 
-    private IModel<Person> currentSelectedPerson;
+    private IModel<WrappedPerson> currentSelectedPerson;
 
-    private AddressListPanel addressListPanel;
+    private AddressListFormPanel addressListFormPanel;
 
     public WrappedModelPage() {
-        this.currentSelectedPerson = new Model<Person>();
+        this.currentSelectedPerson = new Model<WrappedPerson>();
         add(personsList());
         add(addressList());
     }
 
     private Component personsList(){
-        IModel persons = Model.ofList(service.getPersonsWithAddresses());
-        return new PersonListPanel("personsList", persons, this);
+        IModel persons = Model.ofList(service.getWrappedPersonsWithAddress());
+        return new WrappedPersonListPanel("personsList", persons, this);
     }
 
     private Component addressList(){
-        addressListPanel = new AddressListPanel("addressList", new PropertyModel<List<Address>>(currentSelectedPerson, "addresses"));
-        addressListPanel.setOutputMarkupId(true);
-        return addressListPanel;
+        addressListFormPanel = new AddressListFormPanel("addressList", new PropertyModel<List<WrappedAddress>>(currentSelectedPerson, "addresses"), this);
+        addressListFormPanel.setOutputMarkupId(true);
+        return addressListFormPanel;
     }
 
     @Override
     public Component getComponentForAjaxUpdate() {
-        return addressListPanel;
+        return addressListFormPanel;
     }
 
     @Override
-    public void selectPerson(IModel<Person> personModel) {
+    public void selectPerson(IModel<WrappedPerson> personModel) {
         currentSelectedPerson.setObject(personModel.getObject());
     }
+
+    @Override
+    public void removeSelectedAddresses(List<WrappedAddress> selectedAddresses) {
+        for(WrappedAddress wrappedAddress : selectedAddresses){
+            currentSelectedPerson.getObject().getPerson().getAddresses().remove(wrappedAddress);
+        }
+    }
+
+
 }
