@@ -2,8 +2,6 @@ package de.kacperbak.service;
 
 import de.kacperbak.beans.Address;
 import de.kacperbak.beans.Person;
-import de.kacperbak.wrappedbeans.WrappedPerson;
-import de.kacperbak.wrappedbeans.Wrapper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -26,6 +24,8 @@ public class PersonService implements Serializable {
      */
     private static int PERSON_AMOUNT = 2;
     private static int ADDRESS_AMOUNT = 1;
+
+    private static int DEFAULT_INDEX =  -1;
 
     private ArrayList<Person> persons;
     private ArrayList<Address> addresses;
@@ -128,13 +128,14 @@ public class PersonService implements Serializable {
         return personsWithAddresses;
     }
 
-    public List<WrappedPerson> getWrappedPersonsWithAddress(){
-        ArrayList<WrappedPerson> result = new ArrayList<WrappedPerson>();
-        for(Person person : personsWithAddresses){
-            result.add(Wrapper.wrapPerson(person));
+    public void removeAddressFromPerson(Person selectedPerson, Address addressToRemove){
+        int index = DEFAULT_INDEX;
+        index = this.personsWithAddresses.indexOf(selectedPerson);
+        if(index != DEFAULT_INDEX){
+            this.personsWithAddresses.get(index).getAddresses().remove(addressToRemove);
         }
-        return result;
     }
+
 
     public void setPersonsWithAddresses(List<Person> personsWithAddresses) {
         this.personsWithAddresses = personsWithAddresses;

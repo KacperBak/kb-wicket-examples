@@ -9,6 +9,8 @@ import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 
 /**
  * User: bakka
@@ -25,13 +27,13 @@ public class WrappedPersonItemPanel extends Panel {
         this.model = model;
         this.context = context;
         add(select());
-        add(new Label("name", model.getObject().getName()));
-        add(new Label("age", model.getObject().getAge()));
-        add(new Label("pcn", model.getObject().getCheckNumber()));
-        add(new Label("city", model.getObject().getMainAddress().getAddress().getCity()));
-        add(new Label("zip", model.getObject().getMainAddress().getAddress().getZip()));
-        add(new Label("nr", model.getObject().getMainAddress().getAddress().getNr()));
-        add(new Label("acn", model.getObject().getMainAddress().getAddress().getCheckNumber()));
+        add(new Label("name", new PropertyModel<WrappedPerson>(model, "person.name")));
+        add(new Label("age", new PropertyModel<WrappedPerson>(model, "person.age")));
+        add(new Label("pcn", new PropertyModel<WrappedPerson>(model, "person.checkNumber")));
+        add(new Label("city", new PropertyModel<WrappedPerson>(model, "person.mainAddress.city")));
+        add(new Label("zip", new PropertyModel<WrappedPerson>(model, "person.mainAddress.zip")));
+        add(new Label("nr", new PropertyModel<WrappedPerson>(model, "person.mainAddress.nr")));
+        add(new Label("acn", new PropertyModel<WrappedPerson>(model, "person.mainAddress.checkNumber")));
     }
 
     private Component select(){

@@ -31,12 +31,12 @@ public class WrappedModelPage extends BasePage implements WrappedPersonContext, 
     }
 
     private Component personsList(){
-        IModel persons = Model.ofList(service.getWrappedPersonsWithAddress());
+        IModel persons = Model.ofList(service.getPersonsWithAddresses());
         return new WrappedPersonListPanel("personsList", persons, this);
     }
 
     private Component addressList(){
-        addressListFormPanel = new AddressListFormPanel("addressList", new PropertyModel<List<WrappedAddress>>(currentSelectedPerson, "addresses"), this);
+        addressListFormPanel = new AddressListFormPanel("addressList", new PropertyModel<List<WrappedAddress>>(currentSelectedPerson, "wrappedAddresses"), this);
         addressListFormPanel.setOutputMarkupId(true);
         return addressListFormPanel;
     }
@@ -47,16 +47,14 @@ public class WrappedModelPage extends BasePage implements WrappedPersonContext, 
     }
 
     @Override
-    public void selectPerson(IModel<WrappedPerson> personModel) {
-        currentSelectedPerson.setObject(personModel.getObject());
-    }
-
-    @Override
     public void removeSelectedAddresses(List<WrappedAddress> selectedAddresses) {
         for(WrappedAddress wrappedAddress : selectedAddresses){
-            currentSelectedPerson.getObject().getPerson().getAddresses().remove(wrappedAddress);
+            service.removeAddressFromPerson(currentSelectedPerson.getObject().getPerson(), wrappedAddress.getAddress());
         }
     }
 
-
+    @Override
+    public void selectPerson(IModel<WrappedPerson> personModel) {
+        currentSelectedPerson.setObject(personModel.getObject());
+    }
 }
