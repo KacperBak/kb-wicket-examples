@@ -12,14 +12,6 @@ import java.util.List;
  */
 public class Wrapper {
 
-    public static List<WrappedPerson> wrappedPersons(List<Person> persons){
-        List<WrappedPerson> result = new ArrayList<WrappedPerson>();
-        for(Person person : persons){
-            result.add(new WrappedPerson(person, wrappedAddresses(person.getAddresses())));
-        }
-        return result;
-    }
-
     public static List<WrappedAddress> wrappedAddresses(List<Address> addresses){
         List<WrappedAddress> result = new ArrayList<WrappedAddress>();
         for(Address address : addresses){

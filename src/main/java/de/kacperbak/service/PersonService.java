@@ -53,17 +53,29 @@ public class PersonService implements Serializable {
         return result;
     }
 
-    private List<Person> createPersonsWithAddresses(){
-        List<Person> result = new ArrayList<Person>();
+    private ArrayList<Person> createPersonsWithAddresses(){
+        ArrayList<Person> result = new ArrayList<Person>();
 
         Address augsburg = new Address("Augsburg", "46a", 86163, 200);
         Address kempten = new Address("Kempten", "36", 87435, 201);
         Address memmingen = new Address("Memmingen", "38", 87700, 202);
         Address murnau = new Address("Murnau", "10", 82418, 203);
 
-        result.add(new Person("Kacper", 30, 100, augsburg, Arrays.asList(memmingen, kempten, augsburg)));
-        result.add(new Person("Micha", 28, 101, augsburg, Arrays.asList(kempten, augsburg)));
-        result.add(new Person("Max", 26, 102, kempten, Arrays.asList(murnau, kempten)));
+        ArrayList<Address> kacper = new ArrayList<Address>();
+        kacper.add(augsburg);
+        kacper.add(memmingen);
+        kacper.add(kempten);
+        result.add(new Person("Kacper", 30, 100, augsburg, kacper));
+
+        ArrayList<Address> micha = new ArrayList<Address>();
+        micha.add(kempten);
+        micha.add(augsburg);
+        result.add(new Person("Micha", 28, 101, augsburg, micha));
+
+        ArrayList<Address> max = new ArrayList<Address>();
+        max.add(murnau);
+        max.add(kempten);
+        result.add(new Person("Max", 26, 102, kempten, max));
         return result;
     }
 
@@ -128,11 +140,21 @@ public class PersonService implements Serializable {
         return personsWithAddresses;
     }
 
+    public List<Address> getAddressesFromPerson(Person person){
+        int personIndex = DEFAULT_INDEX;
+        personIndex = this.personsWithAddresses.indexOf(person);
+        return (personIndex != DEFAULT_INDEX) ? this.personsWithAddresses.get(personIndex).getAddresses() : null;
+    }
+
     public void removeAddressFromPerson(Person selectedPerson, Address addressToRemove){
-        int index = DEFAULT_INDEX;
-        index = this.personsWithAddresses.indexOf(selectedPerson);
-        if(index != DEFAULT_INDEX){
-            this.personsWithAddresses.get(index).getAddresses().remove(addressToRemove);
+        int personIndex = DEFAULT_INDEX;
+        int addressIndex = DEFAULT_INDEX;
+        personIndex = this.personsWithAddresses.indexOf(selectedPerson);
+        if(personIndex != DEFAULT_INDEX){
+            addressIndex = this.personsWithAddresses.get(personIndex).getAddresses().indexOf(addressToRemove);
+            if(addressIndex != DEFAULT_INDEX){
+                this.personsWithAddresses.get(personIndex).getAddresses().remove(addressIndex);
+            }
         }
     }
 
