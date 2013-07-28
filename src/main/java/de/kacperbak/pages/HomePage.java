@@ -2,6 +2,7 @@ package de.kacperbak.pages;
 
 import de.kacperbak.chapter10.ValidatorExample;
 import de.kacperbak.chapter10NestedForm.NestedFormPage;
+import de.kacperbak.chapter10RadioListView.RadioListViewPage;
 import de.kacperbak.chapter10WrappedModel.WrappedModelPage;
 import de.kacperbak.chapter10formcomponentpanel.FormComponentPage;
 import de.kacperbak.chapter10submitlink.TwoFormsTwoSubmits;
@@ -40,6 +41,7 @@ public class HomePage extends WebPage {
         add(formComponentPanelExample());
         add(nestedFormPageExample());
         add(wrappedModelPageExample());
+        add(radioListViewPageExample());
     }
 
     private Component chapter4PageLink(){
@@ -177,6 +179,15 @@ public class HomePage extends WebPage {
             @Override
             public void onClick() {
                 setResponsePage(WrappedModelPage.class);
+            }
+        };
+    }
+
+    private Component radioListViewPageExample(){
+        return new Link("radioListViewPageExample") {
+            @Override
+            public void onClick() {
+                setResponsePage(RadioListViewPage.class);
             }
         };
     }

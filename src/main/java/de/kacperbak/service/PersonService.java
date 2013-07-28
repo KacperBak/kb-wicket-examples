@@ -5,7 +5,6 @@ import de.kacperbak.beans.Person;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -140,6 +139,12 @@ public class PersonService implements Serializable {
         return personsWithAddresses;
     }
 
+    public Person findSelectedPerson(Person person){
+        int personIndex = DEFAULT_INDEX;
+        personIndex = this.personsWithAddresses.indexOf(person);
+        return this.personsWithAddresses.get(personIndex);
+    }
+
     public List<Address> getAddressesFromPerson(Person person){
         int personIndex = DEFAULT_INDEX;
         personIndex = this.personsWithAddresses.indexOf(person);
@@ -161,5 +166,10 @@ public class PersonService implements Serializable {
 
     public void setPersonsWithAddresses(List<Person> personsWithAddresses) {
         this.personsWithAddresses = personsWithAddresses;
+    }
+
+    public void setMainAddress(Person person, Address mainAddress){
+        Person personToSetAddress = findSelectedPerson(person);
+        personToSetAddress.setMainAddress(mainAddress);
     }
 }
