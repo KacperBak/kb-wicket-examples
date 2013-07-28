@@ -1,6 +1,7 @@
 package de.kacperbak.pages;
 
 import de.kacperbak.AbstractWicketTest;
+import de.kacperbak.HomePage;
 import org.junit.Test;
 
 /**

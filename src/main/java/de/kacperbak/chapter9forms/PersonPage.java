@@ -1,7 +1,7 @@
 package de.kacperbak.chapter9forms;
 
 import de.kacperbak.beans.Address;
-import de.kacperbak.pages.BasePage;
+import de.kacperbak.BasePage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 

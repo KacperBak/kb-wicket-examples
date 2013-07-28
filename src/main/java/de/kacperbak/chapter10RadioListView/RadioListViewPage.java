@@ -4,7 +4,7 @@ import de.kacperbak.beans.Address;
 import de.kacperbak.beans.Person;
 import de.kacperbak.chapter10formcomponentpanel.PersonListContext;
 import de.kacperbak.chapter10formcomponentpanel.PersonListPanel;
-import de.kacperbak.pages.BasePage;
+import de.kacperbak.BasePage;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;

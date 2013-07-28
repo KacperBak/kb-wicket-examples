@@ -1,7 +1,7 @@
 package de.kacperbak.chapter10formcomponentpanel;
 
 import de.kacperbak.beans.Person;
-import de.kacperbak.pages.BasePage;
+import de.kacperbak.BasePage;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.Button;

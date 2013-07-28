@@ -1,7 +1,7 @@
 package de.kacperbak.chapter10;
 
 import de.kacperbak.beans.Address;
-import de.kacperbak.pages.BasePage;
+import de.kacperbak.BasePage;
 import org.apache.wicket.Component;
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
 import org.apache.wicket.markup.html.basic.Label;

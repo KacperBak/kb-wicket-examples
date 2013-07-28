@@ -2,15 +2,13 @@ package de.kacperbak.chapter11;
 
 import de.kacperbak.beans.Address;
 import de.kacperbak.chapter9forms.AddressForm;
-import de.kacperbak.pages.BasePage;
+import de.kacperbak.BasePage;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.model.PropertyModel;
 
 import java.util.List;
 

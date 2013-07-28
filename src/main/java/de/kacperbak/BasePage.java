@@ -1,4 +1,4 @@
-package de.kacperbak.pages;
+package de.kacperbak;
 
 import de.kacperbak.service.PersonService;
 import org.apache.wicket.markup.html.WebPage;

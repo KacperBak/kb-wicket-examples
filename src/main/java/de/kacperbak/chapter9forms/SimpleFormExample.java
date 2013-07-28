@@ -1,6 +1,6 @@
 package de.kacperbak.chapter9forms;
 
-import de.kacperbak.pages.BasePage;
+import de.kacperbak.BasePage;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.Form;
 

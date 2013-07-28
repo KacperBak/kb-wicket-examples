@@ -1,6 +1,6 @@
 package de.kacperbak.chapter10checkboxedform;
 
-import de.kacperbak.pages.BasePage;
+import de.kacperbak.BasePage;
 import org.apache.wicket.Component;
 
 /**

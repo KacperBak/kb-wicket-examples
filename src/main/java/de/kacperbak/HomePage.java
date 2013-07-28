@@ -1,4 +1,4 @@
-package de.kacperbak.pages;
+package de.kacperbak;
 
 import de.kacperbak.chapter10.ValidatorExample;
 import de.kacperbak.chapter10NestedForm.NestedFormPage;
@@ -16,13 +16,19 @@ import de.kacperbak.chapter9forms.SimpleFormExample;
 import de.kacperbak.chapter9models.CompoundPropertyModelExample;
 import de.kacperbak.chapter9models.ModelsExamples;
 import de.kacperbak.chapter9models.PropertyModelExample;
+import de.kacperbak.logging.LoggingPage;
 import org.apache.wicket.Component;
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.markup.html.WebPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HomePage extends WebPage {
+
 	private static final long serialVersionUID = 1L;
+
+    private static final Logger logger = LoggerFactory.getLogger(HomePage.class);
 
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
@@ -42,6 +48,12 @@ public class HomePage extends WebPage {
         add(nestedFormPageExample());
         add(wrappedModelPageExample());
         add(radioListViewPageExample());
+        add(loggingPageExample());
+
+        logger.debug("HomePage created");
+        logger.info("HomePage created");
+        logger.warn("HomePage created");
+        logger.error("HomePage created");
     }
 
     private Component chapter4PageLink(){
@@ -188,6 +200,15 @@ public class HomePage extends WebPage {
             @Override
             public void onClick() {
                 setResponsePage(RadioListViewPage.class);
+            }
+        };
+    }
+
+    private Component loggingPageExample(){
+        return new Link("loggingPageExample") {
+            @Override
+            public void onClick() {
+                setResponsePage(LoggingPage.class);
             }
         };
     }
